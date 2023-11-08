@@ -5,13 +5,13 @@ namespace MornArbor.States
 {
     public class DestroyChildrenState : StateBehaviour
     {
-        [SerializeField] private Transform _parent;
+        [SerializeField] private FlexibleField<Transform> _parent;
 
         public override void OnStateBegin()
         {
-            for (var i = _parent.childCount - 1; i >= 0; i--)
+            for (var i = _parent.value.childCount - 1; i >= 0; i--)
             {
-                Destroy(_parent.GetChild(i).gameObject);
+                Destroy(_parent.value.GetChild(i).gameObject);
             }
         }
     }
