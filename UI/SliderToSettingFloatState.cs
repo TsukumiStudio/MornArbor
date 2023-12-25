@@ -12,7 +12,7 @@ namespace MornArbor.States
 
         public override void OnStateBegin()
         {
-            _slider.value = _settings.LoadFloat();
+            _slider.value = _settings.LoadValue();
             _slider.onValueChanged.AddListener(OnChanged);
         }
 
@@ -23,7 +23,7 @@ namespace MornArbor.States
 
         private void OnChanged(float value)
         {
-            _settings.SaveFloat(value);
+            _settings.SaveValue(value);
         }
     }
 }
