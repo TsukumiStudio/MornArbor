@@ -1,5 +1,4 @@
 ﻿using Arbor;
-using UnityEditor;
 
 namespace MornArbor.States
 {
@@ -8,9 +7,9 @@ namespace MornArbor.States
         public override void OnStateBegin()
         {
 #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+            UnityEngine.Application.Quit();
 #endif
         }
     }
