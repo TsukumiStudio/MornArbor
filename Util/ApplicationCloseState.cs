@@ -1,6 +1,6 @@
 ﻿using Arbor;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class ApplicationCloseState : StateBehaviour
     {

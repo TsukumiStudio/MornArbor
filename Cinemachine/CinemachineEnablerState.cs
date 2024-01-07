@@ -2,7 +2,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public sealed class CinemachineEnablerState : StateBehaviour
     {

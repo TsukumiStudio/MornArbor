@@ -2,7 +2,7 @@
 using MornWeb;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public sealed class OpenURLState : StateBehaviour
     {

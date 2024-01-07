@@ -5,7 +5,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class WaitPointerEventState : StateBehaviour
     {

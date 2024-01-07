@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class WaitRandomTimeState : StateBehaviour
     {

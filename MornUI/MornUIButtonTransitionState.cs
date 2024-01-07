@@ -4,7 +4,7 @@ using MornUI;
 using UniRx;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class MornUIButtonTransitionState : StateBehaviour
     {

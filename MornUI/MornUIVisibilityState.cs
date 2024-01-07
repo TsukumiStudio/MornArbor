@@ -3,7 +3,7 @@ using Arbor;
 using MornUI;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class MornUIVisibilityState : StateBehaviour
     {

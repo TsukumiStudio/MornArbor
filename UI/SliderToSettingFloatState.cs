@@ -3,7 +3,7 @@ using MornSetting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class SliderToSettingFloatState : StateBehaviour
     {

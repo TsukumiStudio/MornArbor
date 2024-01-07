@@ -3,7 +3,7 @@ using Arbor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public sealed class OnButtonState : StateBehaviour
     {

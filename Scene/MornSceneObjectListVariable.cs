@@ -2,7 +2,7 @@
 using MornScene;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     [AddComponentMenu("")]
     public class MornSceneObjectListVariable : VariableList<MornSceneObject>

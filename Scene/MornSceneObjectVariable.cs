@@ -3,7 +3,7 @@ using Arbor;
 using MornScene;
 using UnityEngine;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     [Serializable]
     public class FlexibleMornSceneObject : FlexibleField<MornSceneObject>

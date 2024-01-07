@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MornArbor.States
+namespace MornArbor
 {
     public class UnLoadCurrentSceneState : StateBehaviour
     {

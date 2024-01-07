@@ -1,4 +1,4 @@
-﻿namespace MornArbor.States
+﻿namespace MornArbor
 {
     public enum MornUIVisibilityType
     {
