@@ -14,7 +14,7 @@ namespace MornArbor
 
         public override void OnStateBegin()
         {
-            _disposable = _button.value.OnSubmitAsObservable().Subscribe(_ => Transition(_next));
+            _disposable = _button.value.OnSubmitAsObservable.Subscribe(_ => Transition(_next));
         }
 
         public override void OnStateEnd()
