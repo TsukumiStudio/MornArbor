@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Arbor;
 using UniRx;
 using UnityEngine.Events;
@@ -18,8 +19,10 @@ namespace MornArbor
     public abstract class MornArborStateBase : StateBehaviour
     {
         private CompositeDisposable _disposable;
+        private CancellationTokenSource _cancellationTokenSource;
         private readonly List<UnityEvent> _eventList = new();
         protected ICollection<IDisposable> StateDisposable => _disposable;
+        protected CancellationToken StateToken => _cancellationTokenSource?.Token ?? CancellationToken.None;
 
         public void With(UnityEvent unityEvent)
         {
@@ -29,6 +32,7 @@ namespace MornArbor
         public override sealed void OnStateBegin()
         {
             _disposable = new CompositeDisposable();
+            _cancellationTokenSource = new CancellationTokenSource();
             _eventList.Clear();
             OnStateBeginImpl();
         }
@@ -59,6 +63,9 @@ namespace MornArbor
             _eventList.Clear();
             _disposable?.Dispose();
             _disposable = null;
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
         }
 
         protected virtual void OnStateBeginImpl()
