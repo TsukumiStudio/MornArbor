@@ -19,10 +19,7 @@ namespace MornArbor
 
         public void Exit(string exitFlagName)
         {
-            foreach (var callback in callbackList)
-            {
-                callback.Exit(exitFlagName);
-            }
+            foreach (var callback in callbackList) callback.Exit(exitFlagName);
         }
     }
 }

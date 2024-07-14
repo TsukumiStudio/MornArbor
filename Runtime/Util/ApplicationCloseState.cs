@@ -1,4 +1,5 @@
 ﻿using Arbor;
+using UnityEditor;
 
 namespace MornArbor
 {
@@ -7,7 +8,7 @@ namespace MornArbor
         public override void OnStateBegin()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
 #else
             UnityEngine.Application.Quit();
 #endif

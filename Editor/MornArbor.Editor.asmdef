@@ -1,19 +1,19 @@
 {
-    "name": "MornArbor.Editor",
-    "rootNamespace": "MornArbor",
-    "references": [
-        "GUID:e623bc35d2e040d4d81ac786178e2a6a",
-        "GUID:b56086208f78f3e47b0cd67eba4fd7f4"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "MornArbor.Editor",
+  "rootNamespace": "MornArbor",
+  "references": [
+    "GUID:e623bc35d2e040d4d81ac786178e2a6a",
+    "GUID:b56086208f78f3e47b0cd67eba4fd7f4"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

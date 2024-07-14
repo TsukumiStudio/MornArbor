@@ -18,10 +18,7 @@ namespace MornArbor
 
         public override void OnStateUpdate()
         {
-            if (!_loadScene.isLoaded)
-            {
-                Transition(_next);
-            }
+            if (!_loadScene.isLoaded) Transition(_next);
         }
     }
 }

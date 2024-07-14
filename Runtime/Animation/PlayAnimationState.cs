@@ -19,10 +19,7 @@ namespace MornArbor
 
         public override void OnStateUpdate()
         {
-            if (Time.time - _startTime > _animationClip.length)
-            {
-                Transition(_nextState);
-            }
+            if (Time.time - _startTime > _animationClip.length) Transition(_nextState);
         }
     }
 }

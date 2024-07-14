@@ -17,10 +17,7 @@ namespace MornArbor
         public override void OnStateUpdate()
         {
             _elapsedFrame++;
-            if (_elapsedFrame >= _waitFrame.value)
-            {
-                Transition(_next);
-            }
+            if (_elapsedFrame >= _waitFrame.value) Transition(_next);
         }
     }
 }

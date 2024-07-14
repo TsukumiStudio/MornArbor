@@ -18,18 +18,23 @@ namespace MornArbor
 
     public abstract class MornArborStateBase : StateBehaviour
     {
-        private CompositeDisposable _disposable;
-        private CancellationTokenSource _cancellationTokenSource;
         private readonly List<UnityEvent> _eventList = new();
+        private CancellationTokenSource _cancellationTokenSource;
+        private CompositeDisposable _disposable;
         protected ICollection<IDisposable> StateDisposable => _disposable;
         protected CancellationToken StateToken => _cancellationTokenSource?.Token ?? CancellationToken.None;
+
+        private void OnDestroy()
+        {
+            Dispose();
+        }
 
         public void With(UnityEvent unityEvent)
         {
             _eventList.Add(unityEvent);
         }
 
-        public override sealed void OnStateBegin()
+        public sealed override void OnStateBegin()
         {
             _disposable = new CompositeDisposable();
             _cancellationTokenSource = new CancellationTokenSource();
@@ -37,28 +42,20 @@ namespace MornArbor
             OnStateBeginImpl();
         }
 
-        public override sealed void OnStateUpdate()
+        public sealed override void OnStateUpdate()
         {
             OnStateUpdateImpl();
         }
 
-        public override sealed void OnStateEnd()
+        public sealed override void OnStateEnd()
         {
             OnStateEndImpl();
             Dispose();
         }
 
-        private void OnDestroy()
-        {
-            Dispose();
-        }
-
         private void Dispose()
         {
-            foreach (var unityEvent in _eventList)
-            {
-                unityEvent.RemoveAllListeners();
-            }
+            foreach (var unityEvent in _eventList) unityEvent.RemoveAllListeners();
 
             _eventList.Clear();
             _disposable?.Dispose();

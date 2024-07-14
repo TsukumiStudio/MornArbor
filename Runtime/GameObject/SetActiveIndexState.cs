@@ -10,10 +10,7 @@ namespace MornArbor
 
         public override void OnStateBegin()
         {
-            for (var i = 0; i < _parent.childCount; i++)
-            {
-                _parent.GetChild(i).gameObject.SetActive(i == _activeIndex);
-            }
+            for (var i = 0; i < _parent.childCount; i++) _parent.GetChild(i).gameObject.SetActive(i == _activeIndex);
         }
     }
 }

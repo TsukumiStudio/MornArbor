@@ -6,6 +6,6 @@
         HideImmediate,
         Show,
         ShowImmediate,
-        ShowFromHide,
+        ShowFromHide
     }
 }

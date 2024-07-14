@@ -18,10 +18,7 @@ namespace MornArbor
 
         public override void OnStateUpdate()
         {
-            if (_task == null || _task.isDone)
-            {
-                Transition(_next);
-            }
+            if (_task == null || _task.isDone) Transition(_next);
         }
     }
 }

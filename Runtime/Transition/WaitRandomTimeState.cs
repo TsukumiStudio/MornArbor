@@ -17,10 +17,7 @@ namespace MornArbor
 
         public override void OnStateUpdate()
         {
-            if (Time.time >= _transitionTime)
-            {
-                Transition(_next);
-            }
+            if (Time.time >= _transitionTime) Transition(_next);
         }
     }
 }

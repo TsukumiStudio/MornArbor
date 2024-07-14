@@ -7,7 +7,7 @@ namespace MornArbor
     {
         [SerializeField] private string exitFlagName;
         public string ExitFlagName => exitFlagName;
-        
+
         public override void OnStateBegin()
         {
             var stateExitTrigger = GetComponent<StateExitTrigger>();

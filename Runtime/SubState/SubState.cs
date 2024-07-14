@@ -5,19 +5,22 @@ using UnityEngine;
 
 namespace MornArbor
 {
-    public class SubState : StateBehaviour , ISubStateCallback
+    public class SubState : StateBehaviour, ISubStateCallback
     {
         [SerializeField] private GameObject subModule;
         [SerializeField] private List<StateNameAndStateLinkSet> stateNameAndStateLinkSetList;
 
-        [Serializable]
-        public struct StateNameAndStateLinkSet
-        {
-            public string StateName;
-            public StateLink StateLink;
-        }
-        
         private StateExitTrigger stateExitTrigger;
+
+        void ISubStateCallback.Exit(string exitFlagName)
+        {
+            foreach (var stateLinkInfo in stateNameAndStateLinkSetList)
+                if (stateLinkInfo.StateName == exitFlagName)
+                {
+                    Transition(stateLinkInfo.StateLink);
+                    return;
+                }
+        }
 
         public override void OnStateBegin()
         {
@@ -31,16 +34,11 @@ namespace MornArbor
             stateExitTrigger.RemoveCallback(this);
         }
 
-        void ISubStateCallback.Exit(string exitFlagName)
+        [Serializable]
+        public struct StateNameAndStateLinkSet
         {
-            foreach (var stateLinkInfo in stateNameAndStateLinkSetList)
-            {
-                if (stateLinkInfo.StateName == exitFlagName)
-                {
-                    Transition(stateLinkInfo.StateLink);
-                    return;
-                }
-            }
+            public string StateName;
+            public StateLink StateLink;
         }
     }
 }
