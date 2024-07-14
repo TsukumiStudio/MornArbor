@@ -1,0 +1,28 @@
+{
+    "name": "MornArbor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e623bc35d2e040d4d81ac786178e2a6a",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:0e81d60f9383647e4bb4a78d1d4147d0",
+        "GUID:429a48e5055f1224b8437927466fd54a",
+        "GUID:278a9e9199020405ea7d114110a655b5",
+        "GUID:125c1ea3b2f364846bbec0de39d4c3af",
+        "GUID:7e65050672060cf498569ca551b894bf",
+        "GUID:12978d847f0ea3b4f9cba909c19ed614",
+        "GUID:e7c122e67297b15439207bb951fc9132",
+        "GUID:520891f70526d454fa74c098f96aaedd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
