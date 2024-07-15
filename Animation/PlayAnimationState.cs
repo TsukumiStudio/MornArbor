@@ -7,13 +7,13 @@ namespace MornArbor
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private AnimationClip _animationClip;
-        [SerializeField] private float _duration;
+        [SerializeField] private float _fadeDuration;
         [SerializeField] private StateLink _nextState;
         private float _startTime;
 
         public override void OnStateBegin()
         {
-            _animator.CrossFadeInFixedTime(_animationClip.name, _duration);
+            _animator.CrossFadeInFixedTime(_animationClip.name, _fadeDuration);
             _startTime = Time.time;
         }
 
