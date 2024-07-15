@@ -10,8 +10,8 @@ namespace MornArbor
     [CreateAssetMenu(fileName = nameof(MornArborGlobalSettings), menuName = "Morn/" + nameof(MornArborGlobalSettings))]
     internal sealed class MornArborGlobalSettings : ScriptableObject
     {
-        [SerializeField] private float _fadeInVolumeDuration = 0.5f;
-        [SerializeField] private float _fadeOutVolumeDuration = 0.5f;
+        [SerializeField] private float _fadeInVolumeDuration = 0.3f;
+        [SerializeField] private float _fadeOutVolumeDuration = 0.6f;
         internal static MornArborGlobalSettings Instance { get; private set; }
         internal float FadeInVolumeDuration => _fadeInVolumeDuration;
         internal float FadeOutVolumeDuration => _fadeOutVolumeDuration;
