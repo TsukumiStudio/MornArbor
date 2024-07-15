@@ -1,5 +1,9 @@
-﻿using MornAspect;
+﻿using System.Linq;
+using MornAspect;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace MornArbor
 {
@@ -16,6 +20,14 @@ namespace MornArbor
         {
             Instance = this;
             MornArborUtil.Log("Global Settings Loaded");
+#if UNITY_EDITOR
+            var preloadedAssets = PlayerSettings.GetPreloadedAssets().ToList();
+            if (preloadedAssets.Contains(this) && preloadedAssets.Count(x => x is MornArborGlobalSettings) == 1) return;
+            preloadedAssets.RemoveAll(x => x is MornArborGlobalSettings);
+            preloadedAssets.Add(this);
+            PlayerSettings.SetPreloadedAssets(preloadedAssets.ToArray());
+            MornArborUtil.Log("Global Settings Added to Preloaded Assets!");
+#endif
         }
 
         private void OnDisable()
