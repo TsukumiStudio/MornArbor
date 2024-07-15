@@ -9,7 +9,6 @@ namespace MornArbor
     {
         [SerializeField] private GameObject subModule;
         [SerializeField] private List<StateNameAndStateLinkSet> stateNameAndStateLinkSetList;
-
         private StateExitTrigger stateExitTrigger;
 
         void ISubStateCallback.Exit(string exitFlagName)
