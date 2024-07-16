@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if UNITY_EDITOR
+using Arbor;
 using UnityEditor;
 using UnityEngine;
 
@@ -40,3 +41,4 @@ namespace MornArbor
         }
     }
 }
+#endif
