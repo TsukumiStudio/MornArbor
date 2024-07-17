@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MornArbor.Tween
 {
-    public class TweenVolumeProcess : StateBehaviour, IProcessState
+    public class VolumeProcess : StateBehaviour, IProcessState
     {
         [SerializeField] private AudioSource _source;
         [SerializeField] private float _endValue;
