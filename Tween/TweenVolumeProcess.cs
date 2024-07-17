@@ -8,6 +8,8 @@ namespace MornArbor.Tween
         [SerializeField] private AudioSource _source;
         [SerializeField] private float _duration;
         [SerializeField] private float _endValue;
+        [SerializeField] private bool _toPlay;
+        [SerializeField] private bool _toStop;
         private float _startTime;
         private float _startValue;
         public bool IsActive => Time.time < _startTime + _duration;
@@ -16,6 +18,10 @@ namespace MornArbor.Tween
         {
             _startTime = Time.time;
             _startValue = _source.volume;
+            if (_toPlay)
+            {
+                _source.Play();
+            }
         }
 
         public override void OnStateUpdate()
@@ -27,6 +33,10 @@ namespace MornArbor.Tween
         public override void OnStateEnd()
         {
             _source.volume = _endValue;
+            if (_toStop)
+            {
+                _source.Stop();
+            }
         }
     }
 }
