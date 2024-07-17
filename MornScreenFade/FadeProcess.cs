@@ -8,8 +8,8 @@ namespace MornArbor.MornScreenFade
     public class FadeProcess : StateBehaviour, IProcessState
     {
         [Inject] private IMornScreenFade _screenFade;
-        [SerializeField] private float _duration;
         [SerializeField] private float _endValue;
+        [SerializeField] private float _duration;
         private float _startTime;
         private float _startValue;
         public bool IsActive => Time.time < _startTime + _duration;

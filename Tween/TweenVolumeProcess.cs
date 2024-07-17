@@ -6,8 +6,8 @@ namespace MornArbor.Tween
     public class TweenVolumeProcess : StateBehaviour, IProcessState
     {
         [SerializeField] private AudioSource _source;
-        [SerializeField] private float _duration;
         [SerializeField] private float _endValue;
+        [SerializeField] private float _duration;
         [SerializeField] private bool _toPlay;
         [SerializeField] private bool _toStop;
         private float _startTime;
