@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornArbor.Animation
 {
     public class PlayAnimationState : StateBehaviour
     {

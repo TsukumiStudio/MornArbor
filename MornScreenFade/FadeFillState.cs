@@ -1,9 +1,10 @@
 ﻿using Arbor;
 using Cysharp.Threading.Tasks;
+using MornScreenFade;
 using UnityEngine;
 using VContainer;
 
-namespace MornScreenFade
+namespace MornArbor.MornScreenFade
 {
     public class FadeFillState : StateBehaviour
     {
