@@ -7,14 +7,12 @@ namespace MornArbor.Sequence
 {
     internal abstract class SubBase : StateBehaviour
     {
-        [SerializeField] private ExitCode[] _debugExitCodes;
         [SerializeField] private List<ExitCodeLink> _exitCodeLinks;
         private IEnumerator _loadCoroutine;
 
         protected override void OnValidate()
         {
             base.OnValidate();
-            _debugExitCodes = GetExitCodes();
             if (_exitCodeLinks == null)
             {
                 return;
@@ -48,7 +46,6 @@ namespace MornArbor.Sequence
             StopCoroutine(_loadCoroutine);
         }
 
-        protected abstract ExitCode[] GetExitCodes();
         protected abstract IEnumerator Load();
 
         protected void Transition(ExitCode exitCode)
