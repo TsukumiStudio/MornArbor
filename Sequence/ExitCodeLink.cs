@@ -21,7 +21,7 @@ namespace MornArbor.Sequence
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var exitCodeProperty = property.FindPropertyRelative("ExitCode");
-            var exitCode = ((ExitCode)exitCodeProperty.boxedValue).ToString();
+            var exitCode = exitCodeProperty.FindPropertyRelative("_exitCode").stringValue;
             if (!string.IsNullOrEmpty(exitCode))
             {
                 label.text = exitCode;
