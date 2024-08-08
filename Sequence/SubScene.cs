@@ -16,12 +16,13 @@ namespace MornArbor.Sequence
             var sceneObject = new GameObject(nameof(SubSceneExitCodeProvider));
             var provider = sceneObject.AddComponent<SubSceneExitCodeProvider>();
             SceneManager.MoveGameObjectToScene(sceneObject, scene);
-            /*while (string.IsNullOrEmpty(provider.ExitCode))
+            while (string.IsNullOrEmpty(provider.ExitCode))
             {
                 yield return null;
-            }*/
+            }
+
             yield return SceneManager.UnloadSceneAsync(_scene);
-            Transition(provider.ExitCode);
+            TransitionByExitCode(provider.ExitCode);
         }
     }
 }

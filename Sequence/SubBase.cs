@@ -48,7 +48,7 @@ namespace MornArbor.Sequence
 
         protected abstract IEnumerator Load();
 
-        protected void Transition(ExitCode exitCode)
+        protected void TransitionByExitCode(ExitCode exitCode)
         {
             foreach (var exitCodeLink in _exitCodeLinks)
             {

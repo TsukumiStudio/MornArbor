@@ -7,18 +7,23 @@ namespace MornArbor.Sequence
     internal sealed class SubState : SubBase
     {
         [SerializeField] private ArborFSMInternal _prefab;
+        [SerializeField] private bool _instantiate;
 
         protected override IEnumerator Load()
         {
-            var subState = Instantiate(_prefab, transform);
+            var subState = _instantiate ? Instantiate(_prefab, transform) : _prefab;
             var provider = subState.gameObject.AddComponent<SubStateExitCodeProvider>();
-            /*while (string.IsNullOrEmpty(provider.ExitCode))
+            while (string.IsNullOrEmpty(provider.ExitCode))
             {
                 yield return null;
-            }*/
-            Destroy(subState);
-            Transition(provider.ExitCode);
-            yield break;
+            }
+
+            if (_instantiate)
+            {
+                Destroy(subState);
+            }
+
+            TransitionByExitCode(provider.ExitCode);
         }
     }
 }
