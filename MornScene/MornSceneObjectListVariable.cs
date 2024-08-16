@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_MORN_SCENE
+using Arbor;
 using MornScene;
 using UnityEngine;
 
@@ -9,3 +10,4 @@ namespace MornArbor
     {
     }
 }
+#endif

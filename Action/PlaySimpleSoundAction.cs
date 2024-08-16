@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_MORN_SOUND
+using Arbor;
 using MornSound;
 using UnityEngine;
 using VContainer;
@@ -16,3 +17,4 @@ namespace MornArbor.Action
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_INPUT_SYSTEM
+using Arbor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,3 +19,4 @@ namespace MornArbor.Common
         }
     }
 }
+#endif

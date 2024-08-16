@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_MORN_WEB
+using Arbor;
 using MornWeb;
 using UnityEngine;
 
@@ -14,3 +15,4 @@ namespace MornArbor
         }
     }
 }
+#endif
