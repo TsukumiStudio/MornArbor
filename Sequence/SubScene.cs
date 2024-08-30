@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if USE_MORN_SCENE
+using System.Collections;
 using MornScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,3 +27,4 @@ namespace MornArbor.Sequence
         }
     }
 }
+#endif

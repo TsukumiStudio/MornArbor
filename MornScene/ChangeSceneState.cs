@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_MORN_SCENE
+using Arbor;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,3 +16,4 @@ namespace MornScene
         }
     }
 }
+#endif

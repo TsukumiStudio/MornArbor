@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_MORN_BEAT
+using Arbor;
 using UnityEngine;
 using VContainer;
 
@@ -15,3 +16,4 @@ namespace MornBeat
         }
     }
 }
+#endif

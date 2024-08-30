@@ -1,4 +1,5 @@
-﻿using MornScreenFade;
+﻿#if USE_MORN_SCREEN_FADE
+using MornScreenFade;
 using UnityEngine;
 using VContainer;
 
@@ -27,3 +28,4 @@ namespace MornArbor.Process
         }
     }
 }
+#endif

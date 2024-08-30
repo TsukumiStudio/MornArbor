@@ -1,22 +1,28 @@
 ﻿#if USE_INPUT_SYSTEM
-using Arbor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MornArbor.Common
+namespace MornArbor.Process
 {
-    public class WaitInputState : StateBehaviour
+    public class WaitInputProcess : ProcessBase
     {
         [SerializeField] private InputActionReference _inputAction;
-        [SerializeField] private StateLink _next;
+        private bool _pressed;
+
+        public override void OnStateBegin()
+        {
+            _pressed = false;
+        }
 
         public override void OnStateUpdate()
         {
             if (_inputAction.action.IsPressed())
             {
-                Transition(_next);
+                _pressed = true;
             }
         }
+
+        public override float Progress => _pressed ? 1 : 0;
     }
 }
 #endif

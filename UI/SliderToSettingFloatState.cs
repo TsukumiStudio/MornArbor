@@ -1,4 +1,5 @@
-﻿using Arbor;
+﻿#if USE_MORN_SETTING
+using Arbor;
 using MornSetting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,3 +28,4 @@ namespace MornArbor
         }
     }
 }
+#endif
