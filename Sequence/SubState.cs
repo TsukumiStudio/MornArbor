@@ -11,6 +11,7 @@ namespace MornArbor.Sequence
 
         protected override void OnValidate()
         {
+            base.OnValidate();
             if (_prefab != null)
             {
                 _prefab.enabled = false;
