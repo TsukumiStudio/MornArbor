@@ -5,7 +5,7 @@ using VContainer;
 
 namespace MornBeat
 {
-    public class MornBeatPlayState : StateBehaviour
+    public class MornBeatPlayAction : StateBehaviour
     {
         [SerializeField] private MornBeatMemoSo _beatMemo;
         [Inject] private MornBeatControllerMono _beatController;

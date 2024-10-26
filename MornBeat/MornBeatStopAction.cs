@@ -4,7 +4,7 @@ using VContainer;
 
 namespace MornBeat
 {
-    public class MornBeatResetState : StateBehaviour
+    public class MornBeatStopAction : StateBehaviour
     {
         [Inject] private MornBeatControllerMono _beatController;
 
