@@ -9,6 +9,8 @@ namespace MornArbor.Sequence
         [SerializeField] private ArborFSMInternal _prefab;
         [SerializeField] private bool _instantiate;
 
+        private ArborFSMInternal _subState;
+
         protected override void OnValidate()
         {
             base.OnValidate();
@@ -20,22 +22,34 @@ namespace MornArbor.Sequence
 
         protected override IEnumerator Load()
         {
-            var subState = _instantiate ? Instantiate(_prefab, transform) : _prefab;
+            if (_subState != null)
+            {
+                Debug.LogError("SubState is already loaded.");
+                yield break;
+            }
+            
+            _subState = _instantiate ? Instantiate(_prefab, transform) : _prefab;
             _prefab.enabled = true;
-            subState.Transition(subState.startStateID, TransitionTiming.Immediate);
-            var provider = subState.gameObject.AddComponent<SubStateExitCodeProvider>();
+            _subState.Transition(_subState.startStateID, TransitionTiming.Immediate);
+            var provider = _subState.gameObject.AddComponent<SubStateExitCodeProvider>();
+            provider.CodeUpdate += Callback;
             while (string.IsNullOrEmpty(provider.ExitCode))
             {
                 yield return null;
             }
+            provider.CodeUpdate -= Callback;
+        }
 
+        private void Callback(ExitCode exitCode)
+        {
             _prefab.enabled = false;
             if (_instantiate)
             {
-                Destroy(subState);
+                Destroy(_subState);
             }
 
-            TransitionByExitCode(provider.ExitCode);
+            _subState = null;
+            TransitionByExitCode(exitCode);
         }
     }
 }
