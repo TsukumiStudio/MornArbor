@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace MornArbor
 {
-    public class RollbackSceneAction : StateBehaviour
+    public class RollbackSceneAct : StateBehaviour
     {
         [SerializeField] private string _key;
         [SerializeField] private LoadSceneMode _loadSceneMode;

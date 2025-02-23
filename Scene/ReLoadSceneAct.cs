@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace MornArbor
 {
-    public class ReLoadSceneAction : StateBehaviour
+    public class ReLoadSceneAct : StateBehaviour
     {
         public override void OnStateBegin()
         {

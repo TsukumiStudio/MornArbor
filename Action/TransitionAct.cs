@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MornArbor.Action
 {
-    public class TransitionAction : StateBehaviour
+    public class TransitionAct : StateBehaviour
     {
         [SerializeField] private StateLink _nextState;
 

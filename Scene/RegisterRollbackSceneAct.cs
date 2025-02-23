@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MornArbor
 {
-    public class RegisterRollbackSceneAction : StateBehaviour
+    public class RegisterRollbackSceneAct : StateBehaviour
     {
         [SerializeField] private string _key;
 
