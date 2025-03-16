@@ -3,7 +3,7 @@ using MornScreenFade;
 using UnityEngine;
 using VContainer;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class FadeScreenProcess : ProcessBase
     {

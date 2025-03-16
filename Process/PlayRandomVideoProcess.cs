@@ -1,8 +1,7 @@
-﻿using Arbor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Video;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class PlayRandomVideoProcess : ProcessBase
     {

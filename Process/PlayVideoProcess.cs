@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class PlayVideoProcess : ProcessBase
     {

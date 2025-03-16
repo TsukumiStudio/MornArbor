@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class WaitFrameProgress : ProcessBase
     {

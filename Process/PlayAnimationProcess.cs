@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class PlayAnimationProcess : ProcessBase
     {

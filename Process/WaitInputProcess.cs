@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class WaitInputProcess : ProcessBase
     {

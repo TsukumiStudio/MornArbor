@@ -3,7 +3,7 @@ using System.Linq;
 using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public class ProcessEnd : StateBehaviour
     {

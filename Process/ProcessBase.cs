@@ -3,7 +3,7 @@
 using UnityEditor;
 #endif
 
-namespace MornArbor.Process
+namespace MornArbor
 {
     public abstract class ProcessBase : StateBehaviour
     {
