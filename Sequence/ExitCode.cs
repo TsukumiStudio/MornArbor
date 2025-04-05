@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     [Serializable]
     internal struct ExitCode

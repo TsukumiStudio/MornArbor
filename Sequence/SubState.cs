@@ -1,55 +1,104 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Arbor;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     internal sealed class SubState : SubBase
     {
         [SerializeField] private ArborFSMInternal _prefab;
+        [SerializeField] private Transform _parent;
         [SerializeField] private bool _instantiate;
+        [Inject] private IObjectResolver _resolver;
+        private ArborFSMInternal _instance;
 
-        private ArborFSMInternal _subState;
-
-        protected override void OnValidate()
+        public override void OnStateAwake()
         {
-            base.OnValidate();
-            if (_prefab != null)
+            base.OnStateAwake();
+            if (_instantiate == false && _prefab != null)
             {
                 _prefab.enabled = false;
             }
         }
 
+        public void Clear()
+        {
+            var list = new List<ExitCode>();
+            SetExitCodeLinks(list);
+        }
+
+        public void Reload()
+        {
+            if (_prefab != null)
+            {
+                var list = new List<ExitCode>();
+                foreach (var subState in _prefab.GetComponents<SubStateExitAction>())
+                {
+                    list.Add(subState.ExitCode);
+                }
+
+                SetExitCodeLinks(list);
+            }
+        }
+
         protected override IEnumerator Load()
         {
-            if (_subState != null)
+            if (_instance != null)
             {
                 Debug.LogError("SubState is already loaded.");
                 yield break;
             }
-            
-            _subState = _instantiate ? Instantiate(_prefab, transform) : _prefab;
-            _prefab.enabled = true;
-            _subState.Transition(_subState.startStateID, TransitionTiming.Immediate);
-            var provider = _subState.gameObject.AddComponent<SubStateExitCodeProvider>();
-            provider.CodeUpdate += Callback;
-            while (string.IsNullOrEmpty(provider.ExitCode))
-            {
-                yield return null;
-            }
-            provider.CodeUpdate -= Callback;
+
+            _instance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _prefab;
+            _instance.enabled = true;
+            _instance.Transition(_instance.startStateID, TransitionTiming.Immediate);
+            var provider = _instance.gameObject.GetComponent<SubStateExitCodeProvider>()
+                           ?? _instance.gameObject.AddComponent<SubStateExitCodeProvider>();
+            provider.OnUpdateOnce += Callback;
         }
 
         private void Callback(ExitCode exitCode)
         {
-            _prefab.enabled = false;
+            _instance.enabled = false;
             if (_instantiate)
             {
-                Destroy(_subState);
+                Destroy(_instance.gameObject);
             }
-
-            _subState = null;
+            
+            _instance = null;
             TransitionByExitCode(exitCode);
         }
     }
+
+#if UNITY_EDITOR
+    [CustomEditor(typeof(SubState))]
+    internal sealed class SubStateEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            var subState = (SubState)target;
+            using (new GUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Clear"))
+                {
+                    subState.Clear();
+                    EditorUtility.SetDirty(subState);
+                }
+
+                if (GUILayout.Button("Reoad"))
+                {
+                    subState.Reload();
+                    EditorUtility.SetDirty(subState);
+                }
+            }
+        }
+    }
+#endif
 }

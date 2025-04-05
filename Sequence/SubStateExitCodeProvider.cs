@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     internal sealed class SubStateExitCodeProvider : MonoBehaviour
     {
-        public event System.Action<ExitCode> CodeUpdate;
-        public ExitCode ExitCode { get; private set; }
+        public event System.Action<ExitCode> OnUpdateOnce;
 
         public void SetExitCode(ExitCode exitCode)
         {
-            ExitCode = exitCode;
-            CodeUpdate?.Invoke(ExitCode);
+            OnUpdateOnce?.Invoke(exitCode);
+            OnUpdateOnce = null;
         }
     }
 }

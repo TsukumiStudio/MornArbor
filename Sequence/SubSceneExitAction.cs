@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     internal sealed class SubSceneExitAction : StateBehaviour
     {

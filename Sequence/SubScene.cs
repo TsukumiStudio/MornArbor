@@ -4,7 +4,7 @@ using MornScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     internal sealed class SubScene : SubBase
     {

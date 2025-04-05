@@ -1,11 +1,12 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     internal sealed class SubStateExitAction : StateBehaviour
     {
         [SerializeField] private ExitCode _exitCode;
+        public ExitCode ExitCode => _exitCode;
 
         public override void OnStateBegin()
         {

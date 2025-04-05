@@ -1,37 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Sequence
+namespace MornArbor
 {
     internal abstract class SubBase : StateBehaviour
     {
         [SerializeField] private List<ExitCodeLink> _exitCodeLinks;
         private IEnumerator _loadCoroutine;
 
-        protected override void OnValidate()
+        private StateLink GenerateStateLink(ExitCode exitCode, StateLink old = null)
         {
-            base.OnValidate();
-            if (_exitCodeLinks == null)
+            if (old == null)
             {
-                return;
-            }
-
-            foreach (var exitCodeLink in _exitCodeLinks)
-            {
-                var old = exitCodeLink.Next;
-                exitCodeLink.Next = new StateLink
+                var result = new StateLink
                 {
-                    name = exitCodeLink.ExitCode,
-                    stateID = old.stateID,
-                    transitionTiming = old.transitionTiming,
-                    lineColor = old.lineColor,
-                    onTransitionCountChanged = old.onTransitionCountChanged,
-                    transitionCount = old.transitionCount,
+                    name = exitCode,
                 };
+                return result;
             }
 
+            return new StateLink
+            {
+                name = exitCode,
+                stateID = old.stateID,
+                transitionTiming = old.transitionTiming,
+                lineColor = old.lineColor,
+                onTransitionCountChanged = old.onTransitionCountChanged,
+                transitionCount = old.transitionCount,
+            };
+        }
+
+        protected void SetExitCodeLinks(List<ExitCode> exitCodes)
+        {
+            foreach (var exitCode in exitCodes)
+            {
+                if (_exitCodeLinks.All(x => x.ExitCode.ToString() != exitCode.ToString()))
+                {
+                    _exitCodeLinks.Add(
+                        new ExitCodeLink
+                        {
+                            ExitCode = exitCode,
+                            Next = GenerateStateLink(exitCode),
+                        });
+                }
+            }
+
+            _exitCodeLinks.RemoveAll(x => exitCodes.All(y => y.ToString() != x.ExitCode.ToString()));
             RebuildStateLinkCache();
         }
 
