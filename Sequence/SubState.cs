@@ -65,14 +65,21 @@ namespace MornArbor
 
         private void Callback(ExitCode exitCode)
         {
-            _instance.enabled = false;
-            if (_instantiate)
-            {
-                Destroy(_instance.gameObject);
-            }
-            
-            _instance = null;
             TransitionByExitCode(exitCode);
+        }
+
+        public override void OnStateEnd()
+        {
+            if (_instance != null)
+            {
+                _instance.enabled = false;
+                if (_instantiate)
+                {
+                    Destroy(_instance.gameObject);
+                }
+            
+                _instance = null;
+            }
         }
     }
 
