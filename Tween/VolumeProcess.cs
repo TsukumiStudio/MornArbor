@@ -2,7 +2,7 @@
 
 namespace MornArbor.Tween
 {
-    public class VolumeProgress : ProcessBase
+    public class VolumeProcess : ProcessBase
     {
         [SerializeField] private AudioSource _source;
         [SerializeField] [Range(0, 1f)] private float _endValue;
