@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Arbor;
+using MornEditor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -13,8 +14,8 @@ namespace MornArbor
     internal sealed class SubState : SubBase
     {
         [SerializeField] private ArborFSMInternal _prefab;
-        [SerializeField] private Transform _parent;
         [SerializeField] private bool _instantiate;
+        [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
         [Inject] private IObjectResolver _resolver;
         private ArborFSMInternal _instance;
 
@@ -93,13 +94,13 @@ namespace MornArbor
             var subState = (SubState)target;
             using (new GUILayout.HorizontalScope())
             {
-                if (GUILayout.Button("Clear"))
+                if (GUILayout.Button("Linkクリア"))
                 {
                     subState.Clear();
                     EditorUtility.SetDirty(subState);
                 }
 
-                if (GUILayout.Button("Reoad"))
+                if (GUILayout.Button("Link再読み込み"))
                 {
                     subState.Reload();
                     EditorUtility.SetDirty(subState);
