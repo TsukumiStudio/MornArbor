@@ -39,7 +39,7 @@ namespace MornArbor
             if (_prefab != null)
             {
                 var list = new List<ExitCode>();
-                foreach (var subState in _prefab.GetComponents<SubStateExitAction>())
+                foreach (var subState in _prefab.GetComponents<SubStateExitState>())
                 {
                     list.Add(subState.ExitCode);
                 }

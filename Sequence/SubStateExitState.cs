@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MornArbor
 {
-    internal sealed class SubStateExitAction : StateBehaviour
+    internal sealed class SubStateExitState : StateBehaviour
     {
         [SerializeField] private ExitCode _exitCode;
         public ExitCode ExitCode => _exitCode;
