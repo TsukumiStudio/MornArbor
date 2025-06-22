@@ -1,28 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Arbor;
 using MornEditor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace MornArbor
 {
-    internal sealed class SubState : SubBase
+    [Obsolete("SubStateへ移行")]
+    internal sealed class ObsoleteSubState : SubBase
     {
-        [SerializeField, Label("動的生成")] private bool _instantiate;
-        [SerializeField, HideIf(nameof(_instantiate))] private ArborFSMInternal _instance;
-        [SerializeField, ShowIf(nameof(_instantiate))] private ArborFSMInternal _prefab;
+        [SerializeField] private ArborFSMInternal _prefab;
+        [SerializeField] private bool _instantiate;
         [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
         [Inject] private IObjectResolver _resolver;
-        private ArborFSMInternal _runtimeInstance;
+        private ArborFSMInternal _instance;
 
         public override void OnStateAwake()
         {
             base.OnStateAwake();
-            if (_instantiate == false && _instance != null)
+            if (_instantiate == false && _prefab != null)
             {
-                _instance.enabled = false;
+                _prefab.enabled = false;
             }
         }
 
@@ -36,11 +40,10 @@ namespace MornArbor
         [Button("Link再読み込み")]
         public void Reload()
         {
-            var target = _instantiate ? _prefab : _instance;
-            if (target != null)
+            if (_prefab != null)
             {
                 var list = new List<ExitCode>();
-                foreach (var subState in target.GetComponents<SubStateExitState>())
+                foreach (var subState in _prefab.GetComponents<SubStateExitState>())
                 {
                     list.Add(subState.ExitCode);
                 }
@@ -51,17 +54,17 @@ namespace MornArbor
 
         protected override IEnumerator Load()
         {
-            if (_runtimeInstance != null)
+            if (_instance != null)
             {
                 Debug.LogError("SubState is already loaded.");
                 yield break;
             }
 
-            _runtimeInstance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _instance;
-            _runtimeInstance.enabled = true;
-            _runtimeInstance.Transition(_runtimeInstance.startStateID, TransitionTiming.Immediate);
-            var provider = _runtimeInstance.gameObject.GetComponent<SubStateExitCodeProvider>()
-                           ?? _runtimeInstance.gameObject.AddComponent<SubStateExitCodeProvider>();
+            _instance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _prefab;
+            _instance.enabled = true;
+            _instance.Transition(_instance.startStateID, TransitionTiming.Immediate);
+            var provider = _instance.gameObject.GetComponent<SubStateExitCodeProvider>()
+                           ?? _instance.gameObject.AddComponent<SubStateExitCodeProvider>();
             provider.OnUpdateOnce += Callback;
         }
 
@@ -72,15 +75,15 @@ namespace MornArbor
 
         public override void OnStateEnd()
         {
-            if (_runtimeInstance != null)
+            if (_instance != null)
             {
-                _runtimeInstance.enabled = false;
+                _instance.enabled = false;
                 if (_instantiate)
                 {
-                    Destroy(_runtimeInstance.gameObject);
+                    Destroy(_instance.gameObject);
                 }
 
-                _runtimeInstance = null;
+                _instance = null;
             }
         }
     }

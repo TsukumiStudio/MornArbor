@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Arbor;
+using MornEditor;
 using UnityEngine;
 
 namespace MornArbor
 {
     internal abstract class SubBase : StateBehaviour
     {
-        [SerializeField] private List<ExitCodeLink> _exitCodeLinks;
+        [SerializeField, HideInInspector] private List<ExitCodeLink> _exitCodeLinks;
         private IEnumerator _loadCoroutine;
 
         private StateLink GenerateStateLink(ExitCode exitCode, StateLink old = null)
