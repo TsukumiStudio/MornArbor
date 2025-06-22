@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MornArbor
 {
-    [Obsolete]
+    [Obsolete("PlayAnimationProcessへ移行")]
     public class ObsoletePlayAnimationProcess : ProcessBase
     {
         [SerializeField] private Animator _animator;
