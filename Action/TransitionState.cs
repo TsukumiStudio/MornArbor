@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Action
+namespace MornArbor
 {
     public class TransitionState : StateBehaviour
     {

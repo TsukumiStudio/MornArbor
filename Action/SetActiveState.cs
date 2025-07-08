@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Action
+namespace MornArbor
 {
-    public class SetActiveAction : StateBehaviour
+    public class SetActiveState : StateBehaviour
     {
         [SerializeField] private GameObject _target;
         [SerializeField] private bool _isActive;

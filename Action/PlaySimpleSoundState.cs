@@ -1,17 +1,19 @@
-﻿using Arbor;
+﻿#if USE_MORN_SOUND
+using Arbor;
+using MornSound;
 using UnityEngine;
 
-namespace MornArbor.Common
+namespace MornArbor
 {
-    public sealed class PlaySoundAction : StateBehaviour
+    public sealed class PlaySimpleSoundState : StateBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
 
         public override void OnStateBegin()
         {
-            _audioSource.clip = _audioClip;
-            _audioSource.Play();
+            _audioSource.MornPlay(_audioClip);
         }
     }
 }
+#endif
