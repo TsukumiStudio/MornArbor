@@ -59,10 +59,9 @@ namespace MornArbor
             }
 
             _runtimeInstance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _instance;
-            // Transition Immediate で開始されるため
-            _runtimeInstance.playOnStart = false;
+            _runtimeInstance.playOnStart = true;
             _runtimeInstance.enabled = true;
-            _runtimeInstance.Transition(_runtimeInstance.startStateID, TransitionTiming.Immediate);
+            _runtimeInstance.Transition(_runtimeInstance.startStateID);
             var provider = _runtimeInstance.gameObject.GetComponent<SubStateExitCodeProvider>()
                            ?? _runtimeInstance.gameObject.AddComponent<SubStateExitCodeProvider>();
             provider.OnUpdateOnce += Callback;
