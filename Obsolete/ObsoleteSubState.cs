@@ -18,6 +18,7 @@ namespace MornArbor
         [SerializeField] private ArborFSMInternal _prefab;
         [SerializeField] private bool _instantiate;
         [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
+        [SerializeField, ReadOnly] private bool _autoDestroy;
         [Inject] private IObjectResolver _resolver;
         private ArborFSMInternal _instance;
 
@@ -68,17 +69,22 @@ namespace MornArbor
             provider.OnUpdateOnce += Callback;
         }
 
-        private void Callback(ExitCode exitCode)
+        private void Callback((ExitCode, bool) exitPair)
         {
-            TransitionByExitCode(exitCode);
+            _autoDestroy = exitPair.Item2;
+            TransitionByExitCode(exitPair.Item1);
         }
 
         public override void OnStateEnd()
         {
             if (_instance != null)
             {
-                _instance.enabled = false;
-                if (_instantiate)
+                if (_autoDestroy)
+                {
+                    _instance.enabled = false;
+                }
+                
+                if (_instantiate && _autoDestroy)
                 {
                     Destroy(_instance.gameObject);
                 }
