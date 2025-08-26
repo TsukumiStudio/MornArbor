@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Arbor;
-using MornLib._Morn.MornTween;
+using MornTween;
 using UnityEngine;
 
 namespace MornArbor.Tween
