@@ -14,6 +14,7 @@ namespace MornArbor
         [SerializeField, HideIf(nameof(_instantiate))] private ArborFSMInternal _instance;
         [SerializeField, ShowIf(nameof(_instantiate))] private ArborFSMInternal _prefab;
         [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
+        [SerializeField] private bool _forceAutoDestroy;
         [SerializeField, ReadOnly] private bool _autoDestroy;
         [Inject] private IObjectResolver _resolver;
         private ArborFSMInternal _runtimeInstance;
@@ -78,12 +79,12 @@ namespace MornArbor
         {
             if (_runtimeInstance != null)
             {
-                if (_autoDestroy)
+                if (_autoDestroy || _forceAutoDestroy)
                 {
                     _runtimeInstance.enabled = false;
                 }
                 
-                if (_instantiate && _autoDestroy)
+                if (_instantiate && (_autoDestroy || _forceAutoDestroy))
                 {
                     Destroy(_runtimeInstance.gameObject);
                 }
