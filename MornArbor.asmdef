@@ -1,39 +1,39 @@
 {
-    "name": "MornArbor",
-    "rootNamespace": "MornLib",
-    "references": [
-        "GUID:e623bc35d2e040d4d81ac786178e2a6a",
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:4307f53044263cf4b835bd812fc161a4",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:582f8cf2ead042147afbcc4ddbf3909b",
-        "GUID:1a328b9299f874e829993ee74d070a37",
-        "GUID:520891f70526d454fa74c098f96aaedd",
-        "GUID:0e81d60f9383647e4bb4a78d1d4147d0",
-        "GUID:125c1ea3b2f364846bbec0de39d4c3af",
-        "GUID:14b7abdcedc8147f5ac312124ae6a30f",
-        "GUID:429a48e5055f1224b8437927466fd54a",
-        "GUID:278a9e9199020405ea7d114110a655b5",
-        "GUID:7e65050672060cf498569ca551b894bf",
-        "GUID:e49e3c9658ab7e94c86d7523288c0c21",
-        "GUID:1200e3fab10145c4e94dcd0211606b0c",
-        "GUID:1be8a64c9b31e41438dd1516007bcca4"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.unity.inputsystem",
-            "expression": "",
-            "define": "USE_INPUT_SYSTEM"
-        }
-    ],
-    "noEngineReferences": false
+  "name": "MornArbor",
+  "rootNamespace": "MornLib",
+  "references": [
+    "GUID:e623bc35d2e040d4d81ac786178e2a6a",
+    "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+    "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+    "GUID:f51ebe6a0ceec4240a699833d6309b23",
+    "GUID:4307f53044263cf4b835bd812fc161a4",
+    "GUID:75469ad4d38634e559750d17036d5f7c",
+    "GUID:582f8cf2ead042147afbcc4ddbf3909b",
+    "GUID:1a328b9299f874e829993ee74d070a37",
+    "GUID:520891f70526d454fa74c098f96aaedd",
+    "GUID:0e81d60f9383647e4bb4a78d1d4147d0",
+    "GUID:125c1ea3b2f364846bbec0de39d4c3af",
+    "GUID:14b7abdcedc8147f5ac312124ae6a30f",
+    "GUID:429a48e5055f1224b8437927466fd54a",
+    "GUID:278a9e9199020405ea7d114110a655b5",
+    "GUID:7e65050672060cf498569ca551b894bf",
+    "GUID:e49e3c9658ab7e94c86d7523288c0c21",
+    "GUID:1200e3fab10145c4e94dcd0211606b0c",
+    "GUID:1be8a64c9b31e41438dd1516007bcca4"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [
+    {
+      "name": "com.unity.inputsystem",
+      "expression": "",
+      "define": "USE_INPUT_SYSTEM"
+    }
+  ],
+  "noEngineReferences": false
 }

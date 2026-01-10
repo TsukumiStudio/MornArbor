@@ -1,6 +1,6 @@
 ﻿#if USE_MORN_SCENE
 using System.Collections;
-using MornScene;
+using MornLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
