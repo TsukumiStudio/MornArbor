@@ -12,7 +12,7 @@ namespace MornArbor.Common
 
         public override void OnStateUpdate()
         {
-            if (_inputAction.action.IsPressed())
+            if (_inputAction.action.WasPerformedThisFrame())
             {
                 Transition(_next);
             }
