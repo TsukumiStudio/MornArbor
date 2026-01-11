@@ -1,3 +1,4 @@
+#if USE_MORN_TWEEN
 using System.Collections.Generic;
 using Arbor;
 using MornTween;
@@ -38,3 +39,4 @@ namespace MornArbor.Tween
         }
     }
 }
+#endif
