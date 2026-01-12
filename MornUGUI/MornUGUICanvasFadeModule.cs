@@ -8,65 +8,72 @@ namespace MornLib
     [Serializable]
     internal class MornUGUICanvasFadeModule : MornUGUIStateModuleBase
     {
-        [SerializeField] private bool _active;
-        [SerializeField] private float _fadeInDuration = 0.3f;
-        [SerializeField] private float _fadeOutDuration = 0.6f;
-        private CancellationTokenSource _cancellationTokenSource;
+        [SerializeField, Label("有効化")] private bool _isActive;
+        [SerializeField, ShowIf(nameof(IsActive)), Label("フェードイン時間(s)")] private float _fadeInDuration = 0.3f;
+        [SerializeField, ShowIf(nameof(IsActive)), Label("フェードアウト時間(s)")] private float _fadeOutDuration = 0.6f;
+        private CancellationTokenSource _cts;
+        private MornUGUIControlState _parent;
+        private bool IsActive => _isActive;
 
-        public override void OnAwake(MornUGUIControlState parent)
+        public override void Initialize(MornUGUIControlState parent)
         {
-            if (!_active)
+            _parent = parent;
+        }
+
+        public override void OnAwake()
+        {
+            if (!_isActive)
             {
                 return;
             }
 
-            parent.CanvasGroup.alpha = 0;
+            _parent.CanvasGroup.alpha = 0;
         }
 
-        public override void OnStateBegin(MornUGUIControlState parent)
+        public override void OnStateBegin()
         {
-            if (!_active)
+            if (!_isActive)
             {
                 return;
             }
 
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(parent.destroyCancellationToken);
-            parent.CanvasGroup.alpha = 0;
-            FadeCanvas(parent.CanvasGroup, 1, _fadeInDuration, _cancellationTokenSource.Token).Forget();
+            _cts?.Cancel();
+            _cts = CancellationTokenSource.CreateLinkedTokenSource(_parent.destroyCancellationToken);
+            _parent.CanvasGroup.alpha = 0;
+            FadeCanvas(_parent.CanvasGroup, 1, _fadeInDuration, _cts.Token).Forget();
         }
 
-        public override void OnStateEnd(MornUGUIControlState parent)
+        public override void OnStateEnd()
         {
-            if (!_active)
+            if (!_isActive)
             {
                 return;
             }
 
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(parent.destroyCancellationToken);
-            FadeCanvas(parent.CanvasGroup, 0, _fadeOutDuration, _cancellationTokenSource.Token).Forget();
+            _cts?.Cancel();
+            _cts = CancellationTokenSource.CreateLinkedTokenSource(_parent.destroyCancellationToken);
+            FadeCanvas(_parent.CanvasGroup, 0, _fadeOutDuration, _cts.Token).Forget();
         }
 
-        private async static UniTaskVoid FadeCanvas(CanvasGroup target, float to, float duration,
-            CancellationToken token)
+        private async static UniTaskVoid FadeCanvas(CanvasGroup target, float to, float duration, CancellationToken ct)
         {
             var from = target.alpha;
             var startTime = Time.time;
-            while (duration > 0)
+            var elapsedTime = 0f;
+            while (elapsedTime < duration)
             {
-                var dif = Time.time - startTime;
-                var alpha = Mathf.Lerp(from, to, dif / duration);
+                elapsedTime = Time.time - startTime;
+                var alpha = Mathf.Lerp(from, to, elapsedTime / duration);
                 target.alpha = alpha;
                 if (Mathf.Approximately(target.alpha, to))
                 {
                     break;
                 }
 
-                await UniTask.Yield(PlayerLoopTiming.Update, token);
+                await UniTask.Yield(PlayerLoopTiming.Update, ct);
             }
 
-            token.ThrowIfCancellationRequested();
+            ct.ThrowIfCancellationRequested();
             target.alpha = to;
         }
     }

@@ -6,39 +6,33 @@ namespace MornLib
     [Serializable]
     internal class MornUGUICanvasInteractableModule : MornUGUIStateModuleBase
     {
-        [SerializeField] private bool _ignore;
+        [SerializeField, Label("有効化")] private bool _isActive = true;
+        private MornUGUIControlState _parent;
 
-        public override void OnAwake(MornUGUIControlState parent)
+        public override void Initialize(MornUGUIControlState parent)
         {
-            if (_ignore)
-            {
-                return;
-            }
-
-            parent.CanvasGroup.interactable = false;
-            parent.CanvasGroup.blocksRaycasts = false;
+            _parent = parent;
         }
 
-        public override void OnStateBegin(MornUGUIControlState parent)
+        public override void OnAwake()
         {
-            if (_ignore)
-            {
-                return;
-            }
-
-            parent.CanvasGroup.interactable = true;
-            parent.CanvasGroup.blocksRaycasts = true;
+            if (!_isActive) return;
+            _parent.CanvasGroup.interactable = false;
+            _parent.CanvasGroup.blocksRaycasts = false;
         }
 
-        public override void OnStateEnd(MornUGUIControlState parent)
+        public override void OnStateBegin()
         {
-            if (_ignore)
-            {
-                return;
-            }
+            if (!_isActive) return;
+            _parent.CanvasGroup.interactable = true;
+            _parent.CanvasGroup.blocksRaycasts = true;
+        }
 
-            parent.CanvasGroup.interactable = false;
-            parent.CanvasGroup.blocksRaycasts = false;
+        public override void OnStateEnd()
+        {
+            if (!_isActive) return;
+            _parent.CanvasGroup.interactable = false;
+            _parent.CanvasGroup.blocksRaycasts = false;
         }
     }
 }

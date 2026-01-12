@@ -9,52 +9,66 @@ namespace MornLib
     internal class MornUGUIControlState : StateBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private MornUGUICanvasInteractableModule _canvasInteractableModule;
-        [SerializeField] private MornUGUICanvasFadeModule _canvasFadeModule;
         [SerializeField] private MornUGUIAnimationModule _animationModule;
-        [SerializeField] private MornUGUIButtonModule _buttonModule;
-        [SerializeField] private MornUGUIFocusModule _focusModule;
+        [SerializeField] private MornUGUIAutoFocusModule _autoFocusModule;
+        [SerializeField] private MornUGUILinkModule _linkModule;
         [SerializeField] private MornUGUICancelModule _cancelModule;
-        [SerializeField] private MornUGUISoundBlockModule _soundBlockModule;
+        [SerializeField] private MornUGUICanvasFadeModule _canvasFadeModule;
+        [SerializeField] private MornUGUICanvasInteractableModule _canvasInteractableModule;
+        [SerializeField] private MornUGUISoundBlockStateModule _soundBlockModule;
         private List<MornUGUIStateModuleBase> _modules;
         public CanvasGroup CanvasGroup => _canvasGroup;
-        private List<MornUGUIStateModuleBase> Modules => _modules ??= new List<MornUGUIStateModuleBase>
+        private List<MornUGUIStateModuleBase> Modules
         {
-            _soundBlockModule,
-            _canvasInteractableModule,
-            _canvasFadeModule,
-            _animationModule,
-            _buttonModule,
-            _focusModule,
-            _cancelModule,
-        };
+            get
+            {
+                if (_modules != null) return _modules;
+                _modules ??= new List<MornUGUIStateModuleBase>();
+                // SoundBlockは、フォーカス時の音を防ぐために最初に初期化/登録
+                _soundBlockModule.Initialize(this);
+                _modules.Add(_soundBlockModule);
+                _animationModule.Initialize(this);
+                _modules.Add(_animationModule);
+                _autoFocusModule.Initialize(this);
+                _modules.Add(_autoFocusModule);
+                _linkModule.Initialize(this);
+                _modules.Add(_linkModule);
+                _cancelModule.Initialize(this);
+                _modules.Add(_cancelModule);
+                _canvasFadeModule.Initialize(this);
+                _modules.Add(_canvasFadeModule);
+                _canvasInteractableModule.Initialize(this);
+                _modules.Add(_canvasInteractableModule);
+                return _modules;
+            }
+        }
 
-        public void Execute(Action<MornUGUIStateModuleBase, MornUGUIControlState> action)
+        public void Execute(Action<MornUGUIStateModuleBase> action)
         {
             foreach (var module in Modules)
             {
-                action(module, this);
+                action(module);
             }
         }
 
         private void Awake()
         {
-            Execute((module, parent) => module.OnAwake(parent));
+            Execute(module => module.OnAwake());
         }
 
         public override void OnStateBegin()
         {
-            Execute((module, parent) => module.OnStateBegin(parent));
+            Execute(module => module.OnStateBegin());
         }
 
         public override void OnStateUpdate()
         {
-            Execute((module, parent) => module.OnStateUpdate(parent));
+            Execute(module => module.OnStateUpdate());
         }
 
         public override void OnStateEnd()
         {
-            Execute((module, parent) => module.OnStateEnd(parent));
+            Execute(module => module.OnStateEnd());
         }
     }
 
@@ -66,9 +80,9 @@ namespace MornLib
         {
             base.OnInspectorGUI();
             var controlState = (MornUGUIControlState)target;
-            if (GUILayout.Button("(Editor)Initialize"))
+            if (GUILayout.Button("Buttonの再取得"))
             {
-                controlState.Execute((module, parent) => module.OnEditorInitialize(parent));
+                controlState.Execute(module => module.OnEditorInitialize());
                 controlState.RebuildStateLinkCache();
                 EditorUtility.SetDirty(target);
             }

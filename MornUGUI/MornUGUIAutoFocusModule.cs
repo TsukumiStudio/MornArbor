@@ -12,24 +12,27 @@ using UnityEngine.UI;
 namespace MornLib
 {
     [Serializable]
-    internal class MornUGUIFocusModule : MornUGUIStateModuleBase
+    internal class MornUGUIAutoFocusModule : MornUGUIStateModuleBase
     {
-        [SerializeField] private bool _ignored;
-        [SerializeField] private bool _useCache = true;
-        [SerializeField] private bool _findAdjacent = true;
-        [SerializeField] private Selectable _autoFocusTarget;
-        [SerializeField] [ReadOnly] private Selectable _focusCache;
+        [SerializeField, Label("有効化")] private bool _isActive = true;
+        [SerializeField, ShowIf(nameof(IsActive)), Label("フォーカス対象")] private Selectable _target;
+        [SerializeField, ShowIf(nameof(IsActive)), Label("キャッシュするか")] private bool _useCache = true;
+        [SerializeField, ShowIf(nameof(IsActive)), Label("対象が存在しないとき、隣接に飛ぶか")] private bool _findAdjacent;
+        [SerializeField, ReadOnly] private Selectable _focusCache;
         private PlayerInput _cachedInput;
         private bool _isPointing;
-        private Vector2 _cachedPointingPos;
+        private Vector2? _cachedPointingPos;
+        private MornUGUIControlState _parent;
+        private bool IsActive => _isActive;
 
-        public override void OnStateBegin(MornUGUIControlState parent)
+        public override void Initialize(MornUGUIControlState parent)
         {
-            if (_autoFocusTarget == null || _ignored)
-            {
-                return;
-            }
+            _parent = parent;
+        }
 
+        public override void OnStateBegin()
+        {
+            if (_target == null || !_isActive) return;
             var all = PlayerInput.all;
             if (all.Count == 0)
             {
@@ -46,7 +49,7 @@ namespace MornLib
             }
 
             _cachedInput = all[0];
-            if (_autoFocusTarget != null && EventSystem.current.currentSelectedGameObject == _autoFocusTarget.gameObject)
+            if (_target != null && EventSystem.current.currentSelectedGameObject == _target.gameObject)
             {
                 return;
             }
@@ -62,19 +65,16 @@ namespace MornLib
                 EventSystem.current.SetSelectedGameObject(_focusCache.gameObject);
                 MornUGUIGlobal.Logger.Log("Focus on cache.");
             }
-            else if (_autoFocusTarget != null && _autoFocusTarget.gameObject.activeInHierarchy)
+            else if (_target != null && _target.gameObject.activeInHierarchy)
             {
-                EventSystem.current.SetSelectedGameObject(_autoFocusTarget.gameObject);
+                EventSystem.current.SetSelectedGameObject(_target.gameObject);
                 MornUGUIGlobal.Logger.Log("Focus on target.");
             }
         }
 
-        public override void OnStateUpdate(MornUGUIControlState parent)
+        public override void OnStateUpdate()
         {
-            if (_autoFocusTarget == null || _cachedInput == null || _ignored)
-            {
-                return;
-            }
+            if (_target == null || _cachedInput == null || !_isActive) return;
 
             // Navigate入力があった際にキャッシュを選択
             if (EventSystem.current.currentSelectedGameObject == null)
@@ -85,7 +85,7 @@ namespace MornLib
                 if (anyNavigate || anySubmit || anyCancel)
                 {
                     // Navigateが動いてしまうため1F遅延
-                    Observable.NextFrame().Subscribe(_ => AutoFocus()).AddTo(parent);
+                    Observable.NextFrame().Subscribe(_ => AutoFocus()).AddTo(_parent);
                     _isPointing = false;
                 }
             }
@@ -99,7 +99,8 @@ namespace MornLib
                 }
                 else
                 {
-                    if (Vector2.Distance(_cachedPointingPos, newPoint) > 0.1f)
+                    _cachedPointingPos ??= newPoint;
+                    if (Vector2.Distance(_cachedPointingPos.Value, newPoint) > 0.1f)
                     {
                         EventSystem.current.SetSelectedGameObject(null);
                         _isPointing = true;
@@ -129,7 +130,10 @@ namespace MornLib
                 {
                     var list = new List<Selectable>()
                     {
-                        selectable.FindSelectableOnUp(), selectable.FindSelectableOnDown(), selectable.FindSelectableOnLeft(), selectable.FindSelectableOnRight()
+                        selectable.FindSelectableOnUp(),
+                        selectable.FindSelectableOnDown(),
+                        selectable.FindSelectableOnLeft(),
+                        selectable.FindSelectableOnRight()
                     };
                     var mostNearDistance = float.MaxValue;
                     Selectable mostNear = null;
@@ -158,12 +162,8 @@ namespace MornLib
 
         private bool IsFocusable(Selectable selectable)
         {
-            if (selectable.TryGetComponent<MornUGUIButton>(out var button))
-            {
-                return button.AllowAsFocusCached;
-            }
-
-            return true;
+            if (selectable.navigation.mode == Navigation.Mode.None) return false;
+            return selectable.transform.IsChildOf(_parent.CanvasGroup.transform);
         }
 
         private async UniTaskVoid DelayAsync(Action action, CancellationToken cancellationToken)
@@ -172,13 +172,9 @@ namespace MornLib
             action();
         }
 
-        public override void OnStateEnd(MornUGUIControlState parent)
+        public override void OnStateEnd()
         {
-            if (_autoFocusTarget == null || _ignored)
-            {
-                return;
-            }
-
+            if (_target == null || !_isActive) return;
             EventSystem.current.SetSelectedGameObject(null);
         }
     }
