@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class WaitInputProcess : ProcessBase
+    internal class WaitInputProcess : ProcessBase
     {
         [SerializeField] private InputActionReference _inputAction;
         private bool _pressed;

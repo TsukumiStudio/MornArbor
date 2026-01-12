@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class SetActiveByIndexState : StateBehaviour
+    internal class SetActiveByIndexState : StateBehaviour
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private int _activeIndex;

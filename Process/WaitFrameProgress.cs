@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class WaitFrameProgress : ProcessBase
+    internal class WaitFrameProgress : ProcessBase
     {
         [SerializeField] private int _frame;
         [SerializeField] private StateLink _next;

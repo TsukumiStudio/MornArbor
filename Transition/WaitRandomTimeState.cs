@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class WaitRandomTimeState : StateBehaviour
+    internal class WaitRandomTimeState : StateBehaviour
     {
         [SerializeField] private float _min;
         [SerializeField] private float _max;

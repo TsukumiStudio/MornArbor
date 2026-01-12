@@ -7,14 +7,14 @@ namespace MornLib
 {
     public class MornSaveFloatState : StateBehaviour
     {
-        [Inject] private IMornSaveKeyUserDataStore _save;
+        [Inject] private IMornSaveKeyUserDataStoreSolver _save;
         [SerializeField] private MornSaveKey _saveKey;
         [SerializeField] private bool _isAdditive;
         [SerializeField] private float _value;
 
         public override void OnStateBegin()
         {
-            var userData = _save.FloatTable.GetOrCreateUserData(_saveKey);
+            var userData = _save.Solve().FloatTable.GetOrCreateUserData(_saveKey);
             if (_isAdditive)
             {
                 userData.Value += _value;

@@ -1,9 +1,8 @@
 using Arbor;
-using MornLib;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class QuitState : StateBehaviour
+    internal class QuitState : StateBehaviour
     {
         public override void OnStateBegin()
         {

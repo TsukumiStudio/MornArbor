@@ -7,13 +7,13 @@ namespace MornLib
 {
     public class MornSaveStringState : StateBehaviour
     {
-        [Inject] private IMornSaveKeyUserDataStore _save;
+        [Inject] private IMornSaveKeyUserDataStoreSolver _save;
         [SerializeField] private MornSaveKey _saveKey;
         [SerializeField] private string _value;
 
         public override void OnStateBegin()
         {
-            var userData = _save.StringTable.GetOrCreateUserData(_saveKey);
+            var userData = _save.Solve().StringTable.GetOrCreateUserData(_saveKey);
             userData.Value = _value;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     internal sealed class SubSceneExitCodeProvider : MonoBehaviour
     {

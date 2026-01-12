@@ -1,8 +1,8 @@
 ﻿using Arbor;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class DestroyOwnState : StateBehaviour
+    internal class DestroyOwnState : StateBehaviour
     {
         public override void OnStateBegin()
         {

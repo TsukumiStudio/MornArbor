@@ -1,9 +1,9 @@
 using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class SetSpriteState : StateBehaviour
+    internal class SetSpriteState : StateBehaviour
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private Sprite[] _sprites;

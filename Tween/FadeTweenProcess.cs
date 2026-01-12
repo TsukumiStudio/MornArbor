@@ -1,10 +1,9 @@
 using Arbor;
-using MornEase;
 using UnityEngine;
 
-namespace MornArbor.Tween
+namespace MornLib
 {
-    public class FadeTweenProcess : ProcessBase
+    internal class FadeTweenProcess : ProcessBase
     {
         [SerializeField] private CanvasGroup _target;
         [SerializeField] private float _duration;

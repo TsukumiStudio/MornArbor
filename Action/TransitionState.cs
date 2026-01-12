@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class TransitionState : StateBehaviour
+    internal class TransitionState : StateBehaviour
     {
         [SerializeField] private StateLink _nextState;
 

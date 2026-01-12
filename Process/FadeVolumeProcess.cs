@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using MornArbor;
+using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class FadeVolumeProcess : ProcessBase
+    internal class FadeVolumeProcess : ProcessBase
     {
         [SerializeField] private AudioSource _source;
         [SerializeField] [Range(0, 1f)] private float _endValue;

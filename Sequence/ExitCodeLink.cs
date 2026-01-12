@@ -1,11 +1,9 @@
 ﻿using System;
 using Arbor;
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
+using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     [Serializable]
     internal sealed class ExitCodeLink

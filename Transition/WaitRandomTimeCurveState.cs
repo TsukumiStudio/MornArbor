@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class WaitRandomTimeCurveState : StateBehaviour
+    internal class WaitRandomTimeCurveState : StateBehaviour
     {
         [SerializeField] private AnimationCurve _curve;
         [SerializeField] private StateLink _next;

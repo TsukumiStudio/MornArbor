@@ -3,9 +3,9 @@ using System.Linq;
 using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class ProcessEnd : StateBehaviour
+    internal class ProcessEnd : StateBehaviour
     {
         [SerializeField] private StateLink _nextState;
         private readonly List<ProcessBase> _processList = new();

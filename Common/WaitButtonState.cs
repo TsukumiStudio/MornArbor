@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MornArbor.Common
+namespace MornLib
 {
-    public sealed class WaitButtonState : StateBehaviour
+    internal sealed class WaitButtonState : StateBehaviour
     {
         [SerializeField] private Button _button;
         [SerializeField] private StateLink _nextState;

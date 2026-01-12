@@ -7,12 +7,12 @@ namespace MornLib
 {
     public class MornSaveTriggerState : StateBehaviour
     {
-        [Inject] private IMornSaveKeyUserDataStore _save;
+        [Inject] private IMornSaveKeyUserDataStoreSolver _save;
         [SerializeField] private MornSaveKey _saveKey;
 
         public override void OnStateBegin()
         {
-            _save.TriggerTable.GetOrCreateUserData(_saveKey);
+            _save.Solve().TriggerTable.GetOrCreateUserData(_saveKey);
         }
     }
 }

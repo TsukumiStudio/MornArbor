@@ -2,15 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Arbor;
-using MornEditor;
+using MornArbor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-namespace MornArbor
+namespace MornLib
 {
     [Obsolete("SubStateへ移行")]
     internal sealed class ObsoleteSubState : SubBase
