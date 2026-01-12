@@ -5,23 +5,25 @@ namespace MornLib
     [Serializable]
     internal abstract class MornUGUIStateModuleBase
     {
-        public virtual void OnAwake(MornUGUIControlState parent)
-        {
-        }
-        
-        public virtual void OnStateBegin(MornUGUIControlState parent)
+        public abstract void Initialize(MornUGUIControlState parent);
+
+        public virtual void OnAwake()
         {
         }
 
-        public virtual void OnStateUpdate(MornUGUIControlState parent)
+        public virtual void OnStateBegin()
         {
         }
 
-        public virtual void OnStateEnd(MornUGUIControlState parent)
+        public virtual void OnStateUpdate()
         {
         }
 
-        public virtual void OnEditorInitialize(MornUGUIControlState parent)
+        public virtual void OnStateEnd()
+        {
+        }
+
+        public virtual void OnEditorInitialize()
         {
         }
     }
