@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Arbor;
-using MornEditor;
+using MornArbor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace MornArbor
+namespace MornLib
 {
     internal sealed class SubState : SubBase
     {

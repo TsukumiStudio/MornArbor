@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class WaitTimeState : StateBehaviour
+    internal class WaitTimeState : StateBehaviour
     {
         [SerializeField] private FlexibleField<float> _waitDuration;
         [SerializeField] private StateLink _next;

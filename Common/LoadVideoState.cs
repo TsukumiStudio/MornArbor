@@ -2,9 +2,9 @@ using Arbor;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class LoadVideoState : StateBehaviour
+    internal class LoadVideoState : StateBehaviour
     {
         [SerializeField] private VideoPlayer _videoPlayer;
         [SerializeField] private VideoClip _videoClip;

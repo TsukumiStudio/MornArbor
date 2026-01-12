@@ -5,9 +5,9 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class WaitPointerEventState : StateBehaviour
+    internal class WaitPointerEventState : StateBehaviour
     {
         [SerializeField] private UIBehaviour _target;
         [SerializeField] private PointerEventType _pointerEventType;
@@ -20,12 +20,12 @@ namespace MornArbor
             _isPressed = false;
             var observable = _pointerEventType switch
             {
-                PointerEventType.PointerDown => _target.OnPointerDownAsObservable(),
-                PointerEventType.PointerUp => _target.OnPointerUpAsObservable(),
+                PointerEventType.PointerDown  => _target.OnPointerDownAsObservable(),
+                PointerEventType.PointerUp    => _target.OnPointerUpAsObservable(),
                 PointerEventType.PointerEnter => _target.OnPointerEnterAsObservable(),
-                PointerEventType.PointerExit => _target.OnPointerExitAsObservable(),
+                PointerEventType.PointerExit  => _target.OnPointerExitAsObservable(),
                 PointerEventType.PointerClick => _target.OnPointerClickAsObservable(),
-                _ => throw new ArgumentOutOfRangeException()
+                _                             => throw new ArgumentOutOfRangeException()
             };
             _disposable = observable.Subscribe(_ => _isPressed = true);
         }

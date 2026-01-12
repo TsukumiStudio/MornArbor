@@ -1,10 +1,10 @@
 ﻿using Arbor;
-using MornLib;
+using MornArbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class PlayAnimationProcess : ProcessBase
+    internal class PlayAnimationProcess : ProcessBase
     {
         [SerializeField] private BindAnimatorClip _bind;
         [SerializeField] private float _duration;

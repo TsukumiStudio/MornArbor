@@ -3,9 +3,9 @@ using Arbor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MornArbor.Common
+namespace MornLib
 {
-    public class WaitInputState : StateBehaviour
+    internal class WaitInputState : StateBehaviour
     {
         [SerializeField] private InputActionReference _inputAction;
         [SerializeField] private StateLink _next;

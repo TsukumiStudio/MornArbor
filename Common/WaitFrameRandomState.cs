@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Common
+namespace MornLib
 {
-    public class WaitFrameRandomState : StateBehaviour
+    internal class WaitFrameRandomState : StateBehaviour
     {
         [SerializeField] private int _minFrame;
         [SerializeField] private int _maxFrame;

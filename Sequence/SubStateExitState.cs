@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     internal sealed class SubStateExitState : StateBehaviour
     {

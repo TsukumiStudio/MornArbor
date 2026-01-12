@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class DestroyChildrenState : StateBehaviour
+    internal class DestroyChildrenState : StateBehaviour
     {
         [SerializeField] private Transform _parent;
 
