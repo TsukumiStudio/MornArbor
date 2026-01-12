@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -78,14 +79,13 @@ namespace MornLib
             // Navigate入力があった際にキャッシュを選択
             if (EventSystem.current.currentSelectedGameObject == null)
             {
-                if (_cachedInput.actions["Navigate"].controls.Any(x => x.IsPressed()))
+                var anyNavigate = _cachedInput.actions["Navigate"].controls.Any(x => x.IsPressed());
+                var anySubmit = _cachedInput.actions["Submit"].controls.Any(x => x.IsPressed());
+                var anyCancel = _cachedInput.actions["Cancel"].controls.Any(x => x.IsPressed());
+                if (anyNavigate || anySubmit || anyCancel)
                 {
-                    AutoFocus();
-                    _isPointing = false;
-                }
-                else if (_cachedInput.actions["Submit"].WasPerformedThisFrame())
-                {
-                    AutoFocus();
+                    // Navigateが動いてしまうため1F遅延
+                    Observable.NextFrame().Subscribe(_ => AutoFocus()).AddTo(parent);
                     _isPointing = false;
                 }
             }
