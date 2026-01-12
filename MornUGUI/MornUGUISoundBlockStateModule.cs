@@ -6,7 +6,7 @@ namespace MornLib
     [Serializable]
     internal class MornUGUISoundBlockStateModule : MornUGUIStateModuleBase
     {
-        [SerializeField, Label("有効化")] private bool _isActive = true;
+        [SerializeField] private bool _isActive = true;
         private int _leftFrame;
         private string _factorName;
 

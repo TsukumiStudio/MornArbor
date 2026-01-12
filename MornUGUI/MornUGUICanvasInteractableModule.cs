@@ -6,7 +6,7 @@ namespace MornLib
     [Serializable]
     internal class MornUGUICanvasInteractableModule : MornUGUIStateModuleBase
     {
-        [SerializeField, Label("有効化")] private bool _isActive = true;
+        [SerializeField] private bool _isActive = true;
         private MornUGUIControlState _parent;
 
         public override void Initialize(MornUGUIControlState parent)
