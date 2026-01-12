@@ -8,9 +8,9 @@ namespace MornLib
     [Serializable]
     internal class MornUGUICanvasFadeModule : MornUGUIStateModuleBase
     {
-        [SerializeField, Label("有効化")] private bool _isActive;
-        [SerializeField, ShowIf(nameof(IsActive)), Label("フェードイン時間(s)")] private float _fadeInDuration = 0.3f;
-        [SerializeField, ShowIf(nameof(IsActive)), Label("フェードアウト時間(s)")] private float _fadeOutDuration = 0.6f;
+        [SerializeField] private bool _isActive;
+        [SerializeField, ShowIf(nameof(IsActive))] private float _fadeInDuration = 0.3f;
+        [SerializeField, ShowIf(nameof(IsActive))] private float _fadeOutDuration = 0.6f;
         private CancellationTokenSource _cts;
         private MornUGUIControlState _parent;
         private bool IsActive => _isActive;

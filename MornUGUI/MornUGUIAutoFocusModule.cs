@@ -14,10 +14,10 @@ namespace MornLib
     [Serializable]
     internal class MornUGUIAutoFocusModule : MornUGUIStateModuleBase
     {
-        [SerializeField, Label("有効化")] private bool _isActive = true;
-        [SerializeField, ShowIf(nameof(IsActive)), Label("フォーカス対象")] private Selectable _target;
-        [SerializeField, ShowIf(nameof(IsActive)), Label("キャッシュするか")] private bool _useCache = true;
-        [SerializeField, ShowIf(nameof(IsActive)), Label("対象が存在しないとき、隣接に飛ぶか")] private bool _findAdjacent;
+        [SerializeField] private bool _isActive = true;
+        [SerializeField, ShowIf(nameof(IsActive))] private Selectable _target;
+        [SerializeField, ShowIf(nameof(IsActive))] private bool _useCache = true;
+        [SerializeField, ShowIf(nameof(IsActive))] private bool _findAdjacent;
         [SerializeField, ReadOnly] private Selectable _focusCache;
         private PlayerInput _cachedInput;
         private bool _isPointing;
