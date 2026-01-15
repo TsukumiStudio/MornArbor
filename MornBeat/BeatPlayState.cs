@@ -1,4 +1,4 @@
-﻿#if USE_ARBOR
+﻿#if USE_ARBOR && USE_MORN_BEAT
 using Arbor;
 using UnityEngine;
 using VContainer;
