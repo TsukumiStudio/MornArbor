@@ -11,7 +11,6 @@ namespace MornLib
 
         public override void OnStateBegin()
         {
-            ParticleSystem a;
             _elapsedFrame = 0;
         }
 
