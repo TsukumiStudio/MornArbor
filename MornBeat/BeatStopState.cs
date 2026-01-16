@@ -1,4 +1,4 @@
-﻿ #if USE_ARBOR && USE_MORN_BEAT
+﻿ #if USE_MORN_BEAT
  using System.Threading;
  using Arbor;
  using UnityEngine;
