@@ -11,10 +11,8 @@ namespace MornLib
 
         public override void OnStateBegin()
         {
-            foreach (var provider in GetComponentsInChildren<SubStateExitCodeProvider>())
-            {
-                provider.SetExitCode(_exitCode, _autoDestroy);
-            }
+            var provider = GetComponent<SubStateExitCodeProvider>();
+            provider.SetExitCode(_exitCode, _autoDestroy);
         }
     }
 }
