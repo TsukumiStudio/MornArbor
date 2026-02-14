@@ -11,8 +11,8 @@ namespace MornLib
 
         public override void OnStateBegin()
         {
-            var provider = GetComponent<SubStateExitCodeProvider>();
-            provider.SetExitCode(_exitCode, _autoDestroy);
+            var provider = GetComponent<SubStateExitController>();
+            provider.NotifyToExit(_exitCode, _autoDestroy);
         }
     }
 }
