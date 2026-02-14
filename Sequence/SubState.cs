@@ -63,8 +63,8 @@ namespace MornLib
             _runtimeInstance.playOnStart = true;
             _runtimeInstance.enabled = true;
             _runtimeInstance.Transition(_runtimeInstance.startStateID);
-            var provider = _runtimeInstance.gameObject.GetComponent<SubStateExitCodeProvider>()
-                           ?? _runtimeInstance.gameObject.AddComponent<SubStateExitCodeProvider>();
+            var provider = _runtimeInstance.gameObject.GetComponent<SubStateExitController>()
+                           ?? _runtimeInstance.gameObject.AddComponent<SubStateExitController>();
             provider.OnUpdateOnce += Callback;
         }
 
@@ -78,6 +78,9 @@ namespace MornLib
         {
             if (_runtimeInstance != null)
             {
+                var provider = _runtimeInstance.gameObject.GetComponent<SubStateExitController>();
+                provider.NotifyExitCompleted();
+                    
                 if (_autoDestroy || _forceAutoDestroy)
                 {
                     _runtimeInstance.enabled = false;
