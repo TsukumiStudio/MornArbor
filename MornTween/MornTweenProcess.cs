@@ -1,11 +1,13 @@
+#if USE_MORN_TWEEN
 using System.Collections.Generic;
 using Arbor;
+using MornArbor;
 using MornTween;
 using UnityEngine;
 
-namespace MornArbor.Tween
+namespace MornLib
 {
-    public class MornTweenProcess : ProcessBase
+    internal class MornTweenProcess : ProcessBase
     {
         [SerializeField] private List<MornTweenBase> _tweenList;
         [SerializeField] private StateLink _nextState;
@@ -38,3 +40,4 @@ namespace MornArbor.Tween
         }
     }
 }
+#endif

@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor.Common
+namespace MornLib
 {
-    public class WaitFrameState : StateBehaviour
+    internal class WaitFrameState : StateBehaviour
     {
         [SerializeField] private int _frame;
         [SerializeField] private StateLink _next;
@@ -11,7 +11,6 @@ namespace MornArbor.Common
 
         public override void OnStateBegin()
         {
-            ParticleSystem a;
             _elapsedFrame = 0;
         }
 

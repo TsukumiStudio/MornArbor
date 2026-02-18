@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEditor;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class ApplicationCloseState : StateBehaviour
+    internal class ApplicationCloseState : StateBehaviour
     {
         public override void OnStateBegin()
         {

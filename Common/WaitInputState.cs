@@ -3,16 +3,16 @@ using Arbor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MornArbor.Common
+namespace MornLib
 {
-    public class WaitInputState : StateBehaviour
+    internal class WaitInputState : StateBehaviour
     {
         [SerializeField] private InputActionReference _inputAction;
         [SerializeField] private StateLink _next;
 
         public override void OnStateUpdate()
         {
-            if (_inputAction.action.IsPressed())
+            if (_inputAction.action.WasPerformedThisFrame())
             {
                 Transition(_next);
             }

@@ -1,7 +1,7 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     internal sealed class SubStateExitState : StateBehaviour
     {
@@ -11,10 +11,8 @@ namespace MornArbor
 
         public override void OnStateBegin()
         {
-            foreach (var provider in GetComponentsInChildren<SubStateExitCodeProvider>())
-            {
-                provider.SetExitCode(_exitCode, _autoDestroy);
-            }
+            var provider = GetComponent<SubStateExitController>();
+            provider.NotifyToExit(_exitCode, _autoDestroy);
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using Arbor;
+using MornArbor;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class PlayVideoProcess : ProcessBase
+    internal class PlayVideoProcess : ProcessBase
     {
         [SerializeField] private VideoPlayer _videoPlayer;
         [SerializeField] private StateLink _nextStateLink;

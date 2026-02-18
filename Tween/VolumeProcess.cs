@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace MornArbor.Tween
+namespace MornLib
 {
-    public class VolumeProcess : ProcessBase
+    internal class VolumeProcess : ProcessBase
     {
         [SerializeField] private AudioSource _source;
         [SerializeField] [Range(0, 1f)] private float _endValue;

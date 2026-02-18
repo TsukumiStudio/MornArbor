@@ -1,0 +1,35 @@
+using Arbor;
+using UnityEngine;
+
+namespace MornLib
+{
+    internal class RectMoveTweenProcess : ProcessBase
+    {
+        [SerializeField] private RectTransform _target;
+        [SerializeField] private float _duration;
+        [SerializeField] private Vector3 _endValue;
+        [SerializeField] private MornEaseType _easeType;
+        [SerializeField] private StateLink _nextState;
+        private float _startTime;
+        private Vector3 _startValue;
+        public override float Progress => Mathf.Clamp01((Time.time - _startTime) / _duration);
+
+        public override void OnStateBegin()
+        {
+            _startTime = Time.time;
+            _startValue = _target.anchoredPosition;
+        }
+
+        public override void OnStateUpdate()
+        {
+            var t = Mathf.Clamp01((Time.time - _startTime) / _duration);
+            t = t.Ease(_easeType);
+            var pos = Vector3.Lerp(_startValue, _endValue, t);
+            _target.anchoredPosition = pos;
+            if (t >= 1)
+            {
+                Transition(_nextState);
+            }
+        }
+    }
+}

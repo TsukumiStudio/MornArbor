@@ -1,9 +1,9 @@
 using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class SetCanvasGroupActiveState : StateBehaviour
+    internal class SetCanvasGroupActiveState : StateBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private bool _isActive;

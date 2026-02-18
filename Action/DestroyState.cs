@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class DestroyState : StateBehaviour
+    internal class DestroyState : StateBehaviour
     {
         [SerializeField] private GameObject _target;
 

@@ -2,15 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Arbor;
-using MornEditor;
+using MornArbor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-namespace MornArbor
+namespace MornLib
 {
     [Obsolete("SubStateへ移行")]
     internal sealed class ObsoleteSubState : SubBase
@@ -64,8 +61,8 @@ namespace MornArbor
             _instance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _prefab;
             _instance.enabled = true;
             _instance.Transition(_instance.startStateID, TransitionTiming.Immediate);
-            var provider = _instance.gameObject.GetComponent<SubStateExitCodeProvider>()
-                           ?? _instance.gameObject.AddComponent<SubStateExitCodeProvider>();
+            var provider = _instance.gameObject.GetComponent<SubStateExitController>()
+                           ?? _instance.gameObject.AddComponent<SubStateExitController>();
             provider.OnUpdateOnce += Callback;
         }
 
