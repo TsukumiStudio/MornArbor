@@ -1,10 +1,10 @@
 ﻿#if USE_MORN_SCENE
 using System.Collections;
-using MornScene;
+using MornArbor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MornArbor
+namespace MornLib
 {
     internal sealed class SubScene : SubBase
     {

@@ -1,10 +1,9 @@
 using Arbor;
-using MornEase;
 using UnityEngine;
 
-namespace MornArbor.Tween
+namespace MornLib
 {
-    public class ShakeRotationTweenProcess : ProcessBase
+    internal class ShakeRotationTweenProcess : ProcessBase
     {
         [SerializeField] private Transform _target;
         [SerializeField] private float _duration;

@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MornArbor.Tween
+namespace MornLib
 {
-    public class TweenFadeState : StateBehaviour
+    internal class TweenFadeState : StateBehaviour
     {
         [SerializeField] private Image _image;
         [SerializeField] private float _duration;

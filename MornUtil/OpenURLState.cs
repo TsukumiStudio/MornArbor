@@ -1,9 +1,8 @@
-﻿#if USE_MORN_WEB
+﻿#if USE_MORN_WEB_UTIL
 using Arbor;
-using MornWeb;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     public sealed class OpenURLState : StateBehaviour
     {

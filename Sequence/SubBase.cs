@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Arbor;
-using MornEditor;
+using MornArbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     internal abstract class SubBase : StateBehaviour
     {
@@ -16,10 +16,7 @@ namespace MornArbor
         {
             if (old == null)
             {
-                var result = new StateLink
-                {
-                    name = exitCode,
-                };
+                var result = new StateLink { name = exitCode, };
                 return result;
             }
 
@@ -40,12 +37,7 @@ namespace MornArbor
             {
                 if (_exitCodeLinks.All(x => x.ExitCode.ToString() != exitCode.ToString()))
                 {
-                    _exitCodeLinks.Add(
-                        new ExitCodeLink
-                        {
-                            ExitCode = exitCode,
-                            Next = GenerateStateLink(exitCode),
-                        });
+                    _exitCodeLinks.Add(new ExitCodeLink { ExitCode = exitCode, Next = GenerateStateLink(exitCode), });
                 }
             }
 

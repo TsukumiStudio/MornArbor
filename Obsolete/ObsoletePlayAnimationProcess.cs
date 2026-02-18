@@ -1,10 +1,11 @@
 ﻿using System;
+using MornArbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     [Obsolete("PlayAnimationProcessへ移行")]
-    public class ObsoletePlayAnimationProcess : ProcessBase
+    internal class ObsoletePlayAnimationProcess : ProcessBase
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private AnimationClip _animationClip;

@@ -1,10 +1,9 @@
 ﻿#if USE_MORN_SOUND
 using System;
 using Arbor;
-using MornSound;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
     [Obsolete("MornSoundPlayOneShotStateやMornSoundPlayOneShotStateを使用してください。")]
     public sealed class PlaySimpleSoundState : StateBehaviour

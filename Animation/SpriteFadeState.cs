@@ -1,9 +1,9 @@
 ﻿using Arbor;
 using UnityEngine;
 
-namespace MornArbor
+namespace MornLib
 {
-    public class SpriteFadeState : StateBehaviour
+    internal class SpriteFadeState : StateBehaviour
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private float _minDuration = 1f;

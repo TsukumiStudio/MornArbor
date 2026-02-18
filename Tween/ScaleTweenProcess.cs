@@ -1,10 +1,9 @@
 using Arbor;
-using MornEase;
 using UnityEngine;
 
-namespace MornArbor.Tween
+namespace MornLib
 {
-    public class ScaleTweenProcess : ProcessBase
+    internal class ScaleTweenProcess : ProcessBase
     {
         [SerializeField] private Transform _target;
         [SerializeField] private float _duration;
