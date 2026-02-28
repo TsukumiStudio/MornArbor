@@ -44,6 +44,7 @@ namespace MornLib
             var selectables = _parent.CanvasGroup.transform.GetComponentsInChildren<Selectable>().ToList();
             foreach (var selectable in selectables)
             {
+                if (selectable.GetComponent<MornUGUIIgnore>() != null) continue;
                 var index = _stateLinkSets.FindIndex(x => x.Target == selectable);
                 if (index != -1)
                 {
@@ -56,7 +57,8 @@ namespace MornLib
                 }
             }
 
-            _stateLinkSets.RemoveAll(x => selectables.All(y => y != x.Target));
+            _stateLinkSets.RemoveAll(x =>
+                selectables.All(y => y != x.Target) || x.Target.GetComponent<MornUGUIIgnore>() != null);
         }
     }
 }
