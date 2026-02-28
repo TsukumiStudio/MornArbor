@@ -61,8 +61,8 @@ namespace MornLib
             _instance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _prefab;
             _instance.enabled = true;
             _instance.Transition(_instance.startStateID, TransitionTiming.Immediate);
-            var provider = _instance.gameObject.GetComponent<SubStateExitCodeProvider>()
-                           ?? _instance.gameObject.AddComponent<SubStateExitCodeProvider>();
+            var provider = _instance.gameObject.GetComponent<SubStateExitController>()
+                           ?? _instance.gameObject.AddComponent<SubStateExitController>();
             provider.OnUpdateOnce += Callback;
         }
 
