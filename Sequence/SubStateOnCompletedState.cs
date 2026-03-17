@@ -9,13 +9,13 @@ namespace MornLib
 
         public override void OnStateBegin()
         {
-            var provider = GetComponent<SubStateExitController>() ?? gameObject.AddComponent<SubStateExitController>();
+            var provider = GetComponent<SubStateController>() ?? gameObject.AddComponent<SubStateController>();
             provider.OnExitCompleted += OnExit;
         }
 
         public override void OnStateEnd()
         {
-            var provider = GetComponent<SubStateExitController>() ?? gameObject.AddComponent<SubStateExitController>();
+            var provider = GetComponent<SubStateController>() ?? gameObject.AddComponent<SubStateController>();
             provider.OnExitCompleted -= OnExit;
         }
 
