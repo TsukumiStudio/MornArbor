@@ -14,6 +14,7 @@ namespace MornLib
 
         public void NotifyToEnter()
         {
+            if (_onEnter == null) return;
             foreach (var unityEvent in _onEnter)
             {
                 unityEvent.Invoke();
@@ -22,9 +23,12 @@ namespace MornLib
 
         public void NotifyToExit(ExitCode exitCode, bool autoDestroy)
         {
-            foreach (var unityEvent in _onExit)
+            if (_onExit != null)
             {
-                unityEvent.Invoke();
+                foreach (var unityEvent in _onExit)
+                {
+                    unityEvent.Invoke();
+                }
             }
 
             OnUpdateOnce?.Invoke((exitCode, autoDestroy));

@@ -10,8 +10,7 @@ namespace MornLib
 
         public override void OnStateBegin()
         {
-            _canvasGroup.interactable = _isActive;
-            _canvasGroup.blocksRaycasts = _isActive;
+            _canvasGroup.SetActive(_isActive);
         }
     }
 }
