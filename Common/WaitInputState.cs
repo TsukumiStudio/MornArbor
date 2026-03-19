@@ -1,4 +1,4 @@
-﻿#if USE_INPUT_SYSTEM
+﻿#if USE_INPUTSYSTEM
 using Arbor;
 using UnityEngine;
 using UnityEngine.InputSystem;
