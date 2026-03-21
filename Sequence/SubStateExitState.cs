@@ -12,7 +12,14 @@ namespace MornLib
         public override void OnStateBegin()
         {
             var provider = GetComponent<SubStateController>();
-            provider.NotifyToExit(_exitCode, _autoDestroy);
+            if (provider != null)
+            {
+                provider.NotifyToExit(_exitCode, _autoDestroy);
+            }
+            else if (_autoDestroy)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
