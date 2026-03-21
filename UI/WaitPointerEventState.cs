@@ -1,5 +1,6 @@
 using System;
 using Arbor;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -13,11 +14,8 @@ namespace MornLib
         [SerializeField] private PointerEventType _pointerEventType;
         [SerializeField] private StateLink _nextState;
 
-        private CompositeDisposable _disposables;
-
         public override void OnStateBegin()
         {
-            _disposables = new CompositeDisposable();
             var observable = _pointerEventType switch
             {
                 PointerEventType.PointerDown  => _target.OnPointerDownAsObservable(),
@@ -27,13 +25,7 @@ namespace MornLib
                 PointerEventType.PointerClick => _target.OnPointerClickAsObservable(),
                 _                             => throw new ArgumentOutOfRangeException()
             };
-            observable.Subscribe(_ => Transition(_nextState)).AddTo(_disposables);
-        }
-
-        public override void OnStateEnd()
-        {
-            _disposables?.Dispose();
-            _disposables = null;
+            observable.Subscribe(_ => Transition(_nextState)).AddTo(CancellationTokenOnEnd);
         }
 
         private enum PointerEventType

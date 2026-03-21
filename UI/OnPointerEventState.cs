@@ -1,4 +1,5 @@
 using Arbor;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -19,32 +20,23 @@ namespace MornLib
         [SerializeField] private StateLink _onPointerUp;
         [SerializeField] private StateLink _onPointerClick;
 
-        private CompositeDisposable _disposables;
-
         public override void OnStateBegin()
         {
-            _disposables = new CompositeDisposable();
             _target.OnPointerEnterAsObservable()
                 .Subscribe(_ => Transition(_onPointerEnter))
-                .AddTo(_disposables);
+                .AddTo(CancellationTokenOnEnd);
             _target.OnPointerExitAsObservable()
                 .Subscribe(_ => Transition(_onPointerExit))
-                .AddTo(_disposables);
+                .AddTo(CancellationTokenOnEnd);
             _target.OnPointerDownAsObservable()
                 .Subscribe(_ => Transition(_onPointerDown))
-                .AddTo(_disposables);
+                .AddTo(CancellationTokenOnEnd);
             _target.OnPointerUpAsObservable()
                 .Subscribe(_ => Transition(_onPointerUp))
-                .AddTo(_disposables);
+                .AddTo(CancellationTokenOnEnd);
             _target.OnPointerClickAsObservable()
                 .Subscribe(_ => Transition(_onPointerClick))
-                .AddTo(_disposables);
-        }
-
-        public override void OnStateEnd()
-        {
-            _disposables?.Dispose();
-            _disposables = null;
+                .AddTo(CancellationTokenOnEnd);
         }
     }
 }
