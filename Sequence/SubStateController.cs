@@ -31,15 +31,8 @@ namespace MornLib
                 }
             }
 
-            if (OnUpdateOnce != null)
-            {
-                OnUpdateOnce.Invoke((exitCode, autoDestroy));
-                OnUpdateOnce = null;
-            }
-            else if (autoDestroy)
-            {
-                Destroy(gameObject);
-            }
+            OnUpdateOnce?.Invoke((exitCode, autoDestroy));
+            OnUpdateOnce = null;
         }
 
         public void NotifyExitCompleted()
