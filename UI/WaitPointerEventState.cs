@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Arbor;
 using UniRx;
 using UniRx.Triggers;
@@ -12,12 +12,12 @@ namespace MornLib
         [SerializeField] private UIBehaviour _target;
         [SerializeField] private PointerEventType _pointerEventType;
         [SerializeField] private StateLink _nextState;
-        private IDisposable _disposable;
-        private bool _isPressed;
+
+        private CompositeDisposable _disposables;
 
         public override void OnStateBegin()
         {
-            _isPressed = false;
+            _disposables = new CompositeDisposable();
             var observable = _pointerEventType switch
             {
                 PointerEventType.PointerDown  => _target.OnPointerDownAsObservable(),
@@ -27,17 +27,13 @@ namespace MornLib
                 PointerEventType.PointerClick => _target.OnPointerClickAsObservable(),
                 _                             => throw new ArgumentOutOfRangeException()
             };
-            _disposable = observable.Subscribe(_ => _isPressed = true);
-        }
-
-        public override void OnStateUpdate()
-        {
-            if (_isPressed) Transition(_nextState);
+            observable.Subscribe(_ => Transition(_nextState)).AddTo(_disposables);
         }
 
         public override void OnStateEnd()
         {
-            _disposable?.Dispose();
+            _disposables?.Dispose();
+            _disposables = null;
         }
 
         private enum PointerEventType
