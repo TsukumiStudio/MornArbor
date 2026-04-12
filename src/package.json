@@ -1,6 +1,6 @@
 {
   "name": "com.tsukumistudio.mornarbor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "MornArbor",
   "description": "Arbor 向けのユーティリティ State / Process / Tween / SubState 拡張集。ポインタ・入力待機・シーン遷移・Tween制御などを手軽に扱える。",
   "unity": "6000.0",
@@ -15,16 +15,9 @@
     "tween"
   ],
   "dependencies": {
-    "com.tsukumistudio.mornglobal": "1.0.0",
     "com.tsukumistudio.mornutil": "1.0.0",
     "com.tsukumistudio.morneditor": "1.0.0",
-    "com.tsukumistudio.mornenum": "1.0.0",
     "com.tsukumistudio.mornease": "1.0.0",
-    "com.tsukumistudio.mornscene": "1.0.0",
-    "com.tsukumistudio.mornsound": "1.0.0",
-    "com.tsukumistudio.morninput": "1.0.0",
-    "com.tsukumistudio.mornsave": "1.0.0",
-    "com.tsukumistudio.mornbeat": "1.0.0",
-    "com.tsukumistudio.mornugui": "1.0.0"
+    "com.tsukumistudio.mornscene": "1.0.0"
   }
 }
