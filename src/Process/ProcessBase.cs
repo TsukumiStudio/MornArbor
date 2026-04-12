@@ -1,9 +1,11 @@
 ﻿using Arbor;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace MornLib
 {
-    internal abstract class ProcessBase : StateBehaviour
+    public abstract class ProcessBase : StateBehaviour
     {
         public abstract float Progress { get; }
     }
