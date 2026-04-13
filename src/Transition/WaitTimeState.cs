@@ -5,7 +5,7 @@ namespace MornLib
 {
     internal class WaitTimeState : StateBehaviour
     {
-        [SerializeField] private FlexibleField<float> _waitDuration;
+        [SerializeField] private float _waitDuration;
         [SerializeField] private StateLink _next;
         private float _elapsedFrame;
 
@@ -17,7 +17,7 @@ namespace MornLib
         public override void OnStateUpdate()
         {
             _elapsedFrame += Time.deltaTime;
-            if (_elapsedFrame >= _waitDuration.value) Transition(_next);
+            if (_elapsedFrame >= _waitDuration) Transition(_next);
         }
     }
 }
