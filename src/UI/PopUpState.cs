@@ -33,7 +33,7 @@ namespace MornLib
                 _cachedBlocksRaycasts = _origin.blocksRaycasts;
                 _origin.interactable = false;
                 _origin.blocksRaycasts = false;
-                _instance = _container.Instantiate(_prefab, transform.parent);
+                _instance = _container.Instantiate(_prefab, _origin.transform.parent);
             }).AddTo(CancellationTokenOnEnd);
         }
 
