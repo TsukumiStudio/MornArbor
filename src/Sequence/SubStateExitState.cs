@@ -8,6 +8,7 @@ namespace MornLib
         [SerializeField] private ExitCode _exitCode;
         [SerializeField] private bool _autoDestroy = true;
         public ExitCode ExitCode => _exitCode;
+        public bool AutoDestroy => _autoDestroy;
 
         public override void OnStateBegin()
         {

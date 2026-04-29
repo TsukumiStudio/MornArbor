@@ -12,17 +12,18 @@ namespace MornLib
         [SerializeField, HideInInspector] private List<ExitCodeLink> _exitCodeLinks;
         private IEnumerator _loadCoroutine;
 
-        private StateLink GenerateStateLink(ExitCode exitCode, StateLink old = null)
+        private StateLink GenerateStateLink(ExitCode exitCode, bool autoDestroy, StateLink old = null)
         {
+            var linkName = $"{exitCode}({(autoDestroy ? "autoDestroy" : "keep")})";
             if (old == null)
             {
-                var result = new StateLink { name = exitCode, };
+                var result = new StateLink { name = linkName, };
                 return result;
             }
 
             return new StateLink
             {
-                name = exitCode,
+                name = linkName,
                 stateID = old.stateID,
                 transitionTiming = old.transitionTiming,
                 lineColor = old.lineColor,
@@ -31,17 +32,26 @@ namespace MornLib
             };
         }
 
-        protected void SetExitCodeLinks(List<ExitCode> exitCodes)
+        protected void SetExitCodeLinks(List<(ExitCode ExitCode, bool AutoDestroy)> exitCodes)
         {
-            foreach (var exitCode in exitCodes)
+            foreach (var pair in exitCodes)
             {
-                if (_exitCodeLinks.All(x => x.ExitCode.ToString() != exitCode.ToString()))
+                var existing = _exitCodeLinks.FirstOrDefault(x => x.ExitCode.ToString() == pair.ExitCode.ToString());
+                if (existing == null)
                 {
-                    _exitCodeLinks.Add(new ExitCodeLink { ExitCode = exitCode, Next = GenerateStateLink(exitCode), });
+                    _exitCodeLinks.Add(new ExitCodeLink
+                    {
+                        ExitCode = pair.ExitCode,
+                        Next = GenerateStateLink(pair.ExitCode, pair.AutoDestroy),
+                    });
+                }
+                else
+                {
+                    existing.Next = GenerateStateLink(pair.ExitCode, pair.AutoDestroy, existing.Next);
                 }
             }
 
-            _exitCodeLinks.RemoveAll(x => exitCodes.All(y => y.ToString() != x.ExitCode.ToString()));
+            _exitCodeLinks.RemoveAll(x => exitCodes.All(y => y.ExitCode.ToString() != x.ExitCode.ToString()));
             RebuildStateLinkCache();
         }
 

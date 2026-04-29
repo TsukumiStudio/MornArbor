@@ -30,7 +30,7 @@ namespace MornLib
         [Button("Linkクリア")]
         public void Clear()
         {
-            var list = new List<ExitCode>();
+            var list = new List<(ExitCode, bool)>();
             SetExitCodeLinks(list);
         }
 
@@ -40,10 +40,10 @@ namespace MornLib
             var target = _instantiate ? _prefab : _instance;
             if (target != null)
             {
-                var list = new List<ExitCode>();
+                var list = new List<(ExitCode, bool)>();
                 foreach (var subState in target.GetComponents<SubStateExitState>())
                 {
-                    list.Add(subState.ExitCode);
+                    list.Add((subState.ExitCode, subState.AutoDestroy));
                 }
 
                 SetExitCodeLinks(list);
