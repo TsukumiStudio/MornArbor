@@ -1,5 +1,4 @@
-﻿#if USE_INPUTSYSTEM
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace MornLib
@@ -25,4 +24,3 @@ namespace MornLib
         public override float Progress => _pressed ? 1 : 0;
     }
 }
-#endif

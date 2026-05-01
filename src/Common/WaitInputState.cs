@@ -1,5 +1,4 @@
-﻿#if USE_INPUTSYSTEM
-using Arbor;
+﻿using Arbor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,4 +18,3 @@ namespace MornLib
         }
     }
 }
-#endif
