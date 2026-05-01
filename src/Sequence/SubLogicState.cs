@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Arbor;
 using UnityEngine;
@@ -7,25 +7,12 @@ using VContainer.Unity;
 
 namespace MornLib
 {
-    internal sealed class SubState : SubBase
+    internal sealed class SubLogicState : SubBase
     {
         [Inject] private IObjectResolver _resolver;
-        [SerializeField, Label("動的生成")] private bool _instantiate;
-        [SerializeField, HideIf(nameof(_instantiate))] private ArborFSMInternal _instance;
-        [SerializeField, ShowIf(nameof(_instantiate))] private ArborFSMInternal _prefab;
-        [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
-        [SerializeField] private bool _forceAutoDestroy;
+        [SerializeField] private ArborFSMInternal _prefab;
         private bool _autoDestroy;
         private ArborFSMInternal _runtimeInstance;
-
-        public void Awake()
-        {
-            if (_instantiate == false && _instance != null)
-            {
-                _instance.enabled = false;
-                _instance.playOnStart = false;
-            }
-        }
 
         [Button("Linkクリア")]
         public void Clear()
@@ -37,11 +24,10 @@ namespace MornLib
         [Button("Link再読み込み")]
         public void Reload()
         {
-            var target = _instantiate ? _prefab : _instance;
-            if (target != null)
+            if (_prefab != null)
             {
                 var list = new List<(ExitCode, bool)>();
-                foreach (var subState in target.GetComponents<SubStateExitState>())
+                foreach (var subState in _prefab.GetComponents<SubStateExitState>())
                 {
                     list.Add((subState.ExitCode, subState.AutoDestroy));
                 }
@@ -54,7 +40,7 @@ namespace MornLib
         {
             if (_runtimeInstance == null)
             {
-                _runtimeInstance = _instantiate ? _resolver.Instantiate(_prefab, _parent) : _instance;
+                _runtimeInstance = _resolver.Instantiate(_prefab, transform);
             }
 
             _runtimeInstance.playOnStart = true;
@@ -80,14 +66,10 @@ namespace MornLib
             {
                 var provider = _runtimeInstance.gameObject.GetComponent<SubStateController>();
                 provider.NotifyExitCompleted();
-                if (_autoDestroy || _forceAutoDestroy)
+                if (_autoDestroy)
                 {
                     _runtimeInstance.enabled = false;
-                    if (_instantiate)
-                    {
-                        Destroy(_runtimeInstance.gameObject);
-                    }
-
+                    Destroy(_runtimeInstance.gameObject);
                     _runtimeInstance = null;
                 }
             }

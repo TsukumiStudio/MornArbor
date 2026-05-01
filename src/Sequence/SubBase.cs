@@ -14,7 +14,7 @@ namespace MornLib
 
         private StateLink GenerateStateLink(ExitCode exitCode, bool autoDestroy, StateLink old = null)
         {
-            var linkName = $"{exitCode}({(autoDestroy ? "autoDestroy" : "keep")})";
+            var linkName = autoDestroy ? exitCode.ToString() : $"{exitCode}(keep)";
             if (old == null)
             {
                 var result = new StateLink { name = linkName, };
