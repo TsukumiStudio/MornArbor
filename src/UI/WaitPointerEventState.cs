@@ -1,5 +1,9 @@
 using System;
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
@@ -8,7 +12,11 @@ using UnityEngine.EventSystems;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class WaitPointerEventState : MornStateBehaviour
+#else
     internal class WaitPointerEventState : StateBehaviour
+#endif
     {
         [SerializeField] private UIBehaviour _target;
         [SerializeField] private PointerEventType _pointerEventType;

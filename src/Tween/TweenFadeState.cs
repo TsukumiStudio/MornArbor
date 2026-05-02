@@ -4,7 +4,11 @@ using UnityEngine.UI;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class TweenFadeState : MornStateBehaviour
+#else
     internal class TweenFadeState : StateBehaviour
+#endif
     {
         [SerializeField] private Image _image;
         [SerializeField] private float _duration;

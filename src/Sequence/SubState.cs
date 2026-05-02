@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

@@ -1,10 +1,18 @@
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
     /// <summary>現在のアニメーションが終了するまで待機するState</summary>
+#if USE_MORNSTATE
+    internal sealed class WaitAnimationCompleteState : MornStateBehaviour
+#else
     internal sealed class WaitAnimationCompleteState : StateBehaviour
+#endif
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private int _layer;

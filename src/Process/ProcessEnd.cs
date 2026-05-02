@@ -1,11 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class ProcessEnd : MornStateBehaviour
+#else
     internal class ProcessEnd : StateBehaviour
+#endif
     {
         [SerializeField] private StateLink _nextState;
         private readonly List<ProcessBase> _processList = new();
@@ -13,7 +21,11 @@ namespace MornLib
         public override void OnStateBegin()
         {
             _processList.Clear();
+#if USE_MORNSTATE
+            foreach (var behaviour in GetBehaviours<MornStateBehaviour>())
+#else
             foreach (var behaviour in GetBehaviours<StateBehaviour>())
+#endif
             {
                 if (behaviour is ProcessBase process)
                 {

@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class WaitRandomTimeCurveState : MornStateBehaviour
+#else
     internal class WaitRandomTimeCurveState : StateBehaviour
+#endif
     {
         [SerializeField] private AnimationCurve _curve;
         [SerializeField] private StateLink _next;

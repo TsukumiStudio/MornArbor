@@ -1,5 +1,9 @@
 ﻿#if USE_VIDEO
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using MornArbor;
 using UnityEngine;
 using UnityEngine.Video;

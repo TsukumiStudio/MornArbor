@@ -1,9 +1,17 @@
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    public class SubStateOnCompletedState : MornStateBehaviour
+#else
     public class SubStateOnCompletedState : StateBehaviour
+#endif
     {
         [SerializeField] private StateLink _onExit;
 

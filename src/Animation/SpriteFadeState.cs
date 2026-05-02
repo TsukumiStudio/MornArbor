@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class SpriteFadeState : MornStateBehaviour
+#else
     internal class SpriteFadeState : StateBehaviour
+#endif
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private float _minDuration = 1f;

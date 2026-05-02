@@ -1,35 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using MornArbor;
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal abstract class SubBase : MornStateBehaviour
+#else
     internal abstract class SubBase : StateBehaviour
+#endif
     {
         [SerializeField, HideInInspector] private List<ExitCodeLink> _exitCodeLinks;
         private IEnumerator _loadCoroutine;
 
         private StateLink GenerateStateLink(ExitCode exitCode, bool autoDestroy, StateLink old = null)
         {
-            var linkName = autoDestroy ? exitCode.ToString() : $"{exitCode}(keep)";
-            if (old == null)
-            {
-                var result = new StateLink { name = linkName, };
-                return result;
-            }
-
-            return new StateLink
-            {
-                name = linkName,
-                stateID = old.stateID,
-                transitionTiming = old.transitionTiming,
-                lineColor = old.lineColor,
-                onTransitionCountChanged = old.onTransitionCountChanged,
-                transitionCount = old.transitionCount,
-            };
+            return old == null ? new StateLink() : new StateLink { stateID = old.stateID };
         }
 
         protected void SetExitCodeLinks(List<(ExitCode ExitCode, bool AutoDestroy)> exitCodes)

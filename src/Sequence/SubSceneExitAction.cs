@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal sealed class SubSceneExitAction : MornStateBehaviour
+#else
     internal sealed class SubSceneExitAction : StateBehaviour
+#endif
     {
         [SerializeField] private ExitCode _exitCode;
 

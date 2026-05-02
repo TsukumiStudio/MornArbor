@@ -1,10 +1,18 @@
 using System;
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class WeightTransitionState : MornStateBehaviour
+#else
     internal class WeightTransitionState : StateBehaviour
+#endif
     {
         [Serializable]
         private struct Entry
@@ -40,9 +48,6 @@ namespace MornLib
                     continue;
                 }
 
-                var weight = _entries[i].Weight;
-                var percent = total > 0 && weight > 0 ? weight / total * 100f : 0f;
-                link.name = $"Weight {weight:0.##} ({percent:0.#}%)";
             }
         }
 

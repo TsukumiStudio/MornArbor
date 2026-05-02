@@ -1,4 +1,8 @@
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib

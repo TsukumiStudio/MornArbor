@@ -1,5 +1,9 @@
 ﻿using System;
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEditor;
 using UnityEngine;
 

@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class DestroyChildrenState : MornStateBehaviour
+#else
     internal class DestroyChildrenState : StateBehaviour
+#endif
     {
         [SerializeField] private Transform _parent;
 

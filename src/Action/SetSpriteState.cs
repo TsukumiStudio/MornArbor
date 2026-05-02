@@ -1,9 +1,17 @@
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class SetSpriteState : MornStateBehaviour
+#else
     internal class SetSpriteState : StateBehaviour
+#endif
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private Sprite[] _sprites;

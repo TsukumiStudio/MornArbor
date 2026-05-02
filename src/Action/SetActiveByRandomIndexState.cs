@@ -1,9 +1,17 @@
+#if USE_MORNSTATE
 using MornLib;
+#else
+using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class SetActiveByRandomIndexState : MornStateBehaviour
+#else
     internal class SetActiveByRandomIndexState : StateBehaviour
+#endif
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private Vector2Int _range;

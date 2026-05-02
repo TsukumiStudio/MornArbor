@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class WaitFrameState : MornStateBehaviour
+#else
     internal class WaitFrameState : StateBehaviour
+#endif
     {
         [SerializeField] private int _frame;
         [SerializeField] private StateLink _next;

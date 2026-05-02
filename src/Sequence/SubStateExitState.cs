@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal sealed class SubStateExitState : MornStateBehaviour
+#else
     internal sealed class SubStateExitState : StateBehaviour
+#endif
     {
         [SerializeField] private ExitCode _exitCode;
         [SerializeField] private bool _autoDestroy = true;

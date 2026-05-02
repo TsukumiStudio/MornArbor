@@ -3,7 +3,11 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    internal class WaitRandomTimeState : MornStateBehaviour
+#else
     internal class WaitRandomTimeState : StateBehaviour
+#endif
     {
         [SerializeField] private float _min;
         [SerializeField] private float _max;
