@@ -1,11 +1,15 @@
 ﻿using MornLib;
+using StateLink = MornLib.Connection;
 using UnityEngine;
+using System;
 
 namespace MornLib
 {
 #if USE_MORNSTATE
+    [Serializable]
     internal class WaitTimeState : MornStateBehaviour
 #else
+    [Serializable]
     internal class WaitTimeState : StateBehaviour
 #endif
     {

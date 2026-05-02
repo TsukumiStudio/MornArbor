@@ -1,5 +1,7 @@
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
+using System;
 #else
 using Arbor;
 #endif
@@ -16,8 +18,10 @@ namespace MornLib
     /// 不要な遷移先は未設定のままでよい。
     /// </summary>
 #if USE_MORNSTATE
+    [Serializable]
     internal sealed class OnPointerEventState : MornStateBehaviour
 #else
+    [Serializable]
     internal sealed class OnPointerEventState : StateBehaviour
 #endif
     {

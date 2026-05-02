@@ -1,5 +1,7 @@
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
+using System;
 #else
 using Arbor;
 #endif
@@ -7,6 +9,7 @@ using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
@@ -14,8 +17,10 @@ using VContainer.Unity;
 namespace MornLib
 {
 #if USE_MORNSTATE
+    [Serializable]
     public class PopUpState : MornStateBehaviour
 #else
+    [Serializable]
     public class PopUpState : StateBehaviour
 #endif
     {

@@ -1,11 +1,14 @@
 ﻿using MornLib;
 using UnityEngine;
+using System;
 
 namespace MornLib
 {
 #if USE_MORNSTATE
+    [Serializable]
     internal class SetActiveState : MornStateBehaviour
 #else
+    [Serializable]
     internal class SetActiveState : StateBehaviour
 #endif
     {

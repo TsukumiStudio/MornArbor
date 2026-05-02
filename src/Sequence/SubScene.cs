@@ -1,11 +1,13 @@
 ﻿#if USE_MORN_SCENE
 using System.Collections;
+using System;
 using MornArbor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MornLib
 {
+    [Serializable]
     internal sealed class SubScene : SubBase
     {
         [SerializeField] private MornSceneObject _scene;

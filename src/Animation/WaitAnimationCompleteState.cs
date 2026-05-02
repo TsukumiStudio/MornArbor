@@ -1,5 +1,7 @@
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
+using System;
 #else
 using Arbor;
 #endif
@@ -9,8 +11,10 @@ namespace MornLib
 {
     /// <summary>現在のアニメーションが終了するまで待機するState</summary>
 #if USE_MORNSTATE
+    [Serializable]
     internal sealed class WaitAnimationCompleteState : MornStateBehaviour
 #else
+    [Serializable]
     internal sealed class WaitAnimationCompleteState : StateBehaviour
 #endif
     {

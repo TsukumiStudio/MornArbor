@@ -1,8 +1,11 @@
 ﻿using MornLib;
+using StateLink = MornLib.Connection;
 using UnityEngine;
+using System;
 
 namespace MornLib
 {
+    [Serializable]
     internal class WaitFrameProgress : ProcessBase
     {
         [SerializeField] private int _frame;

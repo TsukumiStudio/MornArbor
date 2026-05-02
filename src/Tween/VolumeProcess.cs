@@ -1,7 +1,9 @@
+using System;
 ﻿using UnityEngine;
 
 namespace MornLib
 {
+    [Serializable]
     internal class VolumeProcess : ProcessBase
     {
         [SerializeField] private AudioSource _source;

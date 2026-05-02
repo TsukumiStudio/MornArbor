@@ -1,15 +1,19 @@
 #if USE_MORNSTATE
 using MornLib;
+using System;
 #else
 using Arbor;
 #endif
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MornLib
 {
 #if USE_MORNSTATE
+    [Serializable]
     internal class SetActiveByRandomIndexState : MornStateBehaviour
 #else
+    [Serializable]
     internal class SetActiveByRandomIndexState : StateBehaviour
 #endif
     {

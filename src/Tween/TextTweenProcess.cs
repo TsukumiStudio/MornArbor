@@ -1,5 +1,7 @@
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
+using System;
 #else
 using Arbor;
 #endif
@@ -8,6 +10,7 @@ using UnityEngine;
 
 namespace MornLib
 {
+    [Serializable]
     internal class TextTweenProcess : ProcessBase
     {
         [SerializeField] private TMP_Text _target;

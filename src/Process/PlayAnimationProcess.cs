@@ -1,9 +1,12 @@
 ﻿using MornLib;
+using StateLink = MornLib.Connection;
 using MornArbor;
+using System;
 using UnityEngine;
 
 namespace MornLib
 {
+    [Serializable]
     internal class PlayAnimationProcess : ProcessBase
     {
         [SerializeField] private BindAnimatorClip _bind;

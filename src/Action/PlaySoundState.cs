@@ -1,11 +1,14 @@
 ﻿using MornLib;
 using UnityEngine;
+using System;
 
 namespace MornLib
 {
 #if USE_MORNSTATE
+    [Serializable]
     internal sealed class PlaySoundState : MornStateBehaviour
 #else
+    [Serializable]
     internal sealed class PlaySoundState : StateBehaviour
 #endif
     {

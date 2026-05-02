@@ -1,10 +1,12 @@
 ﻿#if USE_VIDEO
 using MornArbor;
+using System;
 using UnityEngine;
 using UnityEngine.Video;
 
 namespace MornLib
 {
+    [Serializable]
     internal class PlayRandomVideoProcess : ProcessBase
     {
         [SerializeField] private int _rareRate = 4;

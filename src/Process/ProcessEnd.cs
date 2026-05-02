@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
 #else
 using Arbor;
 #endif
@@ -10,8 +12,10 @@ using UnityEngine;
 namespace MornLib
 {
 #if USE_MORNSTATE
+    [Serializable]
     internal class ProcessEnd : MornStateBehaviour
 #else
+    [Serializable]
     internal class ProcessEnd : StateBehaviour
 #endif
     {

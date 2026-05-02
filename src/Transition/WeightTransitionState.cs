@@ -1,6 +1,7 @@
 using System;
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
 #else
 using Arbor;
 #endif

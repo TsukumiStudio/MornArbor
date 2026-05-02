@@ -1,5 +1,7 @@
 #if USE_MORNSTATE
 using MornLib;
+using StateLink = MornLib.Connection;
+using System;
 #else
 using Arbor;
 #endif
@@ -7,6 +9,7 @@ using UnityEngine;
 
 namespace MornLib
 {
+    [Serializable]
     internal class RectTweenProcess : ProcessBase
     {
         [SerializeField] private RectTransform _target;

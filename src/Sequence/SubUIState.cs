@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 #if USE_MORNSTATE
 using MornLib;
@@ -6,11 +7,13 @@ using MornLib;
 using Arbor;
 #endif
 using UnityEngine;
+using Object = UnityEngine.Object;
 using VContainer;
 using VContainer.Unity;
 
 namespace MornLib
 {
+    [Serializable]
     internal sealed class SubUIState : SubBase
     {
         [Inject] private IObjectResolver _resolver;

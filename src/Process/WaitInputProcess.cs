@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 namespace MornLib
 {
+    [Serializable]
     internal class WaitInputProcess : ProcessBase
     {
         [SerializeField] private InputActionReference _inputAction;
