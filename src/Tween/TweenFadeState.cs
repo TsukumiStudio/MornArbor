@@ -1,4 +1,4 @@
-﻿using Arbor;
+﻿using MornLib;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +9,6 @@ namespace MornLib
         [SerializeField] private Image _image;
         [SerializeField] private float _duration;
         [SerializeField] private float _endValue;
-        [SerializeField] private OutputSlotBool _isEnd;
         [SerializeField] private StateLink _nextState;
         private float _startTime;
         private float _startValue;
@@ -18,7 +17,6 @@ namespace MornLib
         {
             _startTime = Time.time;
             _startValue = _image.color.a;
-            _isEnd.SetValue(false);
         }
 
         public override void OnStateUpdate()
@@ -29,7 +27,6 @@ namespace MornLib
             if (t >= 1)
             {
                 Transition(_nextState);
-                _isEnd.SetValue(true);
             }
         }
     }

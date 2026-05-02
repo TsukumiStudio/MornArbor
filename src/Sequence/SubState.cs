@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Arbor;
+using MornLib;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -11,12 +11,12 @@ namespace MornLib
     {
         [Inject] private IObjectResolver _resolver;
         [SerializeField, Label("動的生成")] private bool _instantiate;
-        [SerializeField, HideIf(nameof(_instantiate))] private ArborFSMInternal _instance;
-        [SerializeField, ShowIf(nameof(_instantiate))] private ArborFSMInternal _prefab;
+        [SerializeField, HideIf(nameof(_instantiate))] private MornStateMachineInternal _instance;
+        [SerializeField, ShowIf(nameof(_instantiate))] private MornStateMachineInternal _prefab;
         [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
         [SerializeField] private bool _forceAutoDestroy;
         private bool _autoDestroy;
-        private ArborFSMInternal _runtimeInstance;
+        private MornStateMachineInternal _runtimeInstance;
 
         public void Awake()
         {

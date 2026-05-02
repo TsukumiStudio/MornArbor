@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Arbor;
+using MornLib;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -10,9 +10,9 @@ namespace MornLib
     internal sealed class SubLogicState : SubBase
     {
         [Inject] private IObjectResolver _resolver;
-        [SerializeField] private ArborFSMInternal _prefab;
+        [SerializeField] private MornStateMachineInternal _prefab;
         private bool _autoDestroy;
-        private ArborFSMInternal _runtimeInstance;
+        private MornStateMachineInternal _runtimeInstance;
 
         [Button("Linkクリア")]
         public void Clear()
