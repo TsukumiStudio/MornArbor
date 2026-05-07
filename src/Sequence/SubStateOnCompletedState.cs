@@ -1,21 +1,11 @@
-#if USE_MORNSTATE
-using MornLib;
-using StateLink = MornLib.Connection;
 using System;
-#else
 using Arbor;
-#endif
 using UnityEngine;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    public class SubStateOnCompletedState : MornStateBehaviour
-#else
     [Serializable]
     public class SubStateOnCompletedState : StateBehaviour
-#endif
     {
         [SerializeField] private StateLink _onExit;
 

@@ -1,16 +1,12 @@
+using Arbor;
 ﻿using MornLib;
 using UnityEngine;
 using System;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal sealed class SubStateExitState : MornStateBehaviour
-#else
     [Serializable]
     internal sealed class SubStateExitState : StateBehaviour
-#endif
     {
         [SerializeField] private ExitCode _exitCode;
         [SerializeField] private bool _autoDestroy = true;

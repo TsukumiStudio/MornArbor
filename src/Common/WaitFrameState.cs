@@ -1,17 +1,12 @@
+using Arbor;
 ﻿using MornLib;
-using StateLink = MornLib.Connection;
 using UnityEngine;
 using System;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class WaitFrameState : MornStateBehaviour
-#else
     [Serializable]
     internal class WaitFrameState : StateBehaviour
-#endif
     {
         [SerializeField] private int _frame;
         [SerializeField] private StateLink _next;

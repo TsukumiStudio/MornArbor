@@ -1,18 +1,13 @@
+using Arbor;
 ﻿using MornLib;
-using StateLink = MornLib.Connection;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class TweenFadeState : MornStateBehaviour
-#else
     [Serializable]
     internal class TweenFadeState : StateBehaviour
-#endif
     {
         [SerializeField] private Image _image;
         [SerializeField] private float _duration;

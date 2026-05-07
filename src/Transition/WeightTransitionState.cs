@@ -1,19 +1,10 @@
 using System;
-#if USE_MORNSTATE
-using MornLib;
-using StateLink = MornLib.Connection;
-#else
 using Arbor;
-#endif
 using UnityEngine;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    internal class WeightTransitionState : MornStateBehaviour
-#else
     internal class WeightTransitionState : StateBehaviour
-#endif
     {
         [Serializable]
         private struct Entry
