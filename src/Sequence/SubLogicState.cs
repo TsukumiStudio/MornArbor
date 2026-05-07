@@ -51,7 +51,11 @@ namespace MornLib
 
             _runtimeInstance.playOnStart = true;
             _runtimeInstance.enabled = true;
+            #if USE_MORNSTATE
             _runtimeInstance.Transition(_runtimeInstance.startStateID);
+#else
+            _runtimeInstance.Transition(_runtimeInstance.startStateID);
+#endif
             var provider = _runtimeInstance.gameObject.GetComponent<SubStateController>()
                            ?? _runtimeInstance.gameObject.AddComponent<SubStateController>();
             provider.OnUpdateOnce += Callback;
