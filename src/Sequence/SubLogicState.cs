@@ -1,3 +1,4 @@
+#if USE_ARBOR
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -86,3 +87,4 @@ namespace MornLib
         }
     }
 }
+#endif

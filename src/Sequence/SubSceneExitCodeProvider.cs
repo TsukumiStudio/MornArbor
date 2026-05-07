@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+#if USE_ARBOR
+using UnityEngine;
 
 namespace MornLib
 {
@@ -12,3 +13,4 @@ namespace MornLib
         }
     }
 }
+#endif

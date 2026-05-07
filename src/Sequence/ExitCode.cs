@@ -1,4 +1,5 @@
-﻿using System;
+#if USE_ARBOR
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,3 +42,4 @@ namespace MornLib
     }
 #endif
 }
+#endif

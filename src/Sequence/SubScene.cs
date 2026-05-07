@@ -1,4 +1,5 @@
-﻿#if USE_MORN_SCENE
+#if USE_ARBOR
+#if USE_MORN_SCENE
 using System.Collections;
 using System;
 using MornArbor;
@@ -29,4 +30,5 @@ namespace MornLib
         }
     }
 }
+#endif
 #endif

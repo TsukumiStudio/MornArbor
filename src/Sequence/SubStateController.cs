@@ -1,4 +1,5 @@
-﻿using System;
+#if USE_ARBOR
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -49,3 +50,4 @@ namespace MornLib
         }
     }
 }
+#endif
