@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+#if USE_MORNSTATE
+using MornLib;
+#else
 using Arbor;
+#endif
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -13,12 +17,12 @@ namespace MornLib
     {
         [Inject] private IObjectResolver _resolver;
         [SerializeField, Label("動的生成")] private bool _instantiate;
-        [SerializeField, HideIf(nameof(_instantiate))] private ArborFSMInternal _instance;
-        [SerializeField, ShowIf(nameof(_instantiate))] private ArborFSMInternal _prefab;
+        [SerializeField, HideIf(nameof(_instantiate))] private MornStateMachineInternal _instance;
+        [SerializeField, ShowIf(nameof(_instantiate))] private MornStateMachineInternal _prefab;
         [SerializeField, ShowIf(nameof(_instantiate))] private Transform _parent;
         [SerializeField] private bool _forceAutoDestroy;
         private bool _autoDestroy;
-        private ArborFSMInternal _runtimeInstance;
+        private MornStateMachineInternal _runtimeInstance;
 
         public void Awake()
         {
@@ -61,7 +65,11 @@ namespace MornLib
 
             _runtimeInstance.playOnStart = true;
             _runtimeInstance.enabled = true;
-                        _runtimeInstance.Transition(_runtimeInstance.startStateID);
+            #if USE_MORNSTATE
+            _runtimeInstance.Transition(_runtimeInstance.startStateID);
+#else
+            _runtimeInstance.Transition(_runtimeInstance.startStateID);
+#endif
             var provider = _runtimeInstance.gameObject.GetComponent<SubStateController>()
                            ?? _runtimeInstance.gameObject.AddComponent<SubStateController>();
             provider.OnUpdateOnce += Callback;

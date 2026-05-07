@@ -1,5 +1,10 @@
+#if USE_MORNSTATE
+using MornLib;
+using StateLink = MornLib.Connection;
 using System;
+#else
 using Arbor;
+#endif
 using UnityEngine;
 using Random = UnityEngine.Random;
 

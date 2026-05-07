@@ -1,13 +1,18 @@
-using Arbor;
 ﻿using MornLib;
+using StateLink = MornLib.Connection;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    [Serializable]
+    internal class SpriteFadeState : MornStateBehaviour
+#else
     [Serializable]
     internal class SpriteFadeState : StateBehaviour
+#endif
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private float _minDuration = 1f;

@@ -1,13 +1,23 @@
-using System;
 #if USE_VIDEO
+#if USE_MORNSTATE
+using MornLib;
+using StateLink = MornLib.Connection;
+using System;
+#else
 using Arbor;
+#endif
 using UnityEngine;
 using UnityEngine.Video;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    [Serializable]
+    internal class LoadVideoState : MornStateBehaviour
+#else
     [Serializable]
     internal class LoadVideoState : StateBehaviour
+#endif
     {
         [SerializeField] private VideoPlayer _videoPlayer;
         [SerializeField] private VideoClip _videoClip;

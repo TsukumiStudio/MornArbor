@@ -1,5 +1,10 @@
+#if USE_MORNSTATE
+using MornLib;
+using StateLink = MornLib.Connection;
 using System;
+#else
 using Arbor;
+#endif
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
@@ -12,8 +17,13 @@ namespace MornLib
     /// 指定UIBehaviourのポインターイベントごとに遷移するState。
     /// 不要な遷移先は未設定のままでよい。
     /// </summary>
+#if USE_MORNSTATE
+    [Serializable]
+    internal sealed class OnPointerEventState : MornStateBehaviour
+#else
     [Serializable]
     internal sealed class OnPointerEventState : StateBehaviour
+#endif
     {
         [SerializeField] private UIBehaviour _target;
         [SerializeField] private StateLink _onPointerEnter;

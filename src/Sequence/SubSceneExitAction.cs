@@ -1,4 +1,3 @@
-using Arbor;
 ﻿using MornLib;
 using MornArbor;
 using System;
@@ -6,8 +5,13 @@ using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    [Serializable]
+    internal sealed class SubSceneExitAction : MornStateBehaviour
+#else
     [Serializable]
     internal sealed class SubSceneExitAction : StateBehaviour
+#endif
     {
         [SerializeField] private ExitCode _exitCode;
 

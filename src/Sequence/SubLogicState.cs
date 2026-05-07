@@ -1,7 +1,11 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+#if USE_MORNSTATE
+using MornLib;
+#else
 using Arbor;
+#endif
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -12,9 +16,9 @@ namespace MornLib
     internal sealed class SubLogicState : SubBase
     {
         [Inject] private IObjectResolver _resolver;
-        [SerializeField] private ArborFSMInternal _prefab;
+        [SerializeField] private MornStateMachineInternal _prefab;
         private bool _autoDestroy;
-        private ArborFSMInternal _runtimeInstance;
+        private MornStateMachineInternal _runtimeInstance;
 
         [Button("Linkクリア")]
         public void Clear()
@@ -47,7 +51,11 @@ namespace MornLib
 
             _runtimeInstance.playOnStart = true;
             _runtimeInstance.enabled = true;
-                        _runtimeInstance.Transition(_runtimeInstance.startStateID);
+            #if USE_MORNSTATE
+            _runtimeInstance.Transition(_runtimeInstance.startStateID);
+#else
+            _runtimeInstance.Transition(_runtimeInstance.startStateID);
+#endif
             var provider = _runtimeInstance.gameObject.GetComponent<SubStateController>()
                            ?? _runtimeInstance.gameObject.AddComponent<SubStateController>();
             provider.OnUpdateOnce += Callback;

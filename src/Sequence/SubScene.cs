@@ -1,4 +1,3 @@
-using Arbor;
 ﻿#if USE_MORN_SCENE
 using System.Collections;
 using System;

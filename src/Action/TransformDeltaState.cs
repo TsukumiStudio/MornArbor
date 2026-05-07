@@ -1,11 +1,20 @@
+#if USE_MORNSTATE
+using MornLib;
 using System;
+#else
 using Arbor;
+#endif
 using UnityEngine;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    [Serializable]
+    internal class TransformDeltaState : MornStateBehaviour
+#else
     [Serializable]
     internal class TransformDeltaState : StateBehaviour
+#endif
     {
         [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _positionPerSec;

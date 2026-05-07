@@ -1,13 +1,18 @@
-using Arbor;
 ﻿using MornLib;
+using StateLink = MornLib.Connection;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
 
 namespace MornLib
 {
+#if USE_MORNSTATE
+    [Serializable]
+    internal class WaitRandomTimeCurveState : MornStateBehaviour
+#else
     [Serializable]
     internal class WaitRandomTimeCurveState : StateBehaviour
+#endif
     {
         [SerializeField] private AnimationCurve _curve;
         [SerializeField] private StateLink _next;
