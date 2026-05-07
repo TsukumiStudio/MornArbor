@@ -2,11 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-#if USE_MORNSTATE
-using MornLib;
-#else
 using Arbor;
-#endif
 using UnityEngine;
 using Object = UnityEngine.Object;
 using VContainer;
@@ -60,11 +56,7 @@ namespace MornLib
 
             _runtimeInstance.playOnStart = true;
             _runtimeInstance.enabled = true;
-            #if USE_MORNSTATE
-            _runtimeInstance.Transition(_runtimeInstance.startStateID);
-#else
-            _runtimeInstance.Transition(_runtimeInstance.startStateID);
-#endif
+                        _runtimeInstance.Transition(_runtimeInstance.startStateID);
             var provider = _runtimeInstance.gameObject.GetComponent<SubStateController>()
                            ?? _runtimeInstance.gameObject.AddComponent<SubStateController>();
             provider.OnUpdateOnce += Callback;

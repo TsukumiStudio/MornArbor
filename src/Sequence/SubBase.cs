@@ -3,24 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-#if USE_MORNSTATE
-using MornLib;
-using StateLink = MornLib.Connection;
-#else
 using Arbor;
-#endif
 using MornArbor;
 using UnityEngine;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal abstract class SubBase : MornStateBehaviour
-#else
     [Serializable]
     internal abstract class SubBase : StateBehaviour
-#endif
     {
         [SerializeField, HideInInspector] private List<ExitCodeLink> _exitCodeLinks;
         private IEnumerator _loadCoroutine;
@@ -50,11 +40,7 @@ namespace MornLib
             }
 
             _exitCodeLinks.RemoveAll(x => exitCodes.All(y => y.ExitCode.ToString() != x.ExitCode.ToString()));
-#if USE_MORNSTATE
-            RebuildConnectionCache();
-#else
             RebuildStateLinkCache();
-#endif
         }
 
         public override void OnStateBegin()

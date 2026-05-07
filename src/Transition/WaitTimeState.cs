@@ -1,17 +1,13 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using StateLink = MornLib.Connection;
 using UnityEngine;
 using System;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class WaitTimeState : MornStateBehaviour
-#else
     [Serializable]
     internal class WaitTimeState : StateBehaviour
-#endif
     {
         [SerializeField] private float _waitDuration;
         [SerializeField] private StateLink _next;
@@ -29,3 +25,4 @@ namespace MornLib
         }
     }
 }
+#endif

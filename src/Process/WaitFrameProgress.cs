@@ -1,4 +1,5 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using StateLink = MornLib.Connection;
 using UnityEngine;
 using System;
@@ -28,3 +29,4 @@ namespace MornLib
         }
     }
 }
+#endif

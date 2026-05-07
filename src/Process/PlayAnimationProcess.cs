@@ -1,4 +1,5 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using StateLink = MornLib.Connection;
 using MornArbor;
 using System;
@@ -31,3 +32,4 @@ namespace MornLib
         }
     }
 }
+#endif

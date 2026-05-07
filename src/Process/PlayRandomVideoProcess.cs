@@ -1,4 +1,5 @@
-﻿#if USE_VIDEO
+#if USE_ARBOR
+#if USE_VIDEO
 using MornArbor;
 using System;
 using UnityEngine;
@@ -49,4 +50,5 @@ namespace MornLib
         }
     }
 }
+#endif
 #endif

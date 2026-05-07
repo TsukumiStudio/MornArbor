@@ -1,10 +1,5 @@
-#if USE_MORNSTATE
-using MornLib;
-using StateLink = MornLib.Connection;
-using System;
-#else
+#if USE_ARBOR
 using Arbor;
-#endif
 using TMPro;
 using UnityEngine;
 
@@ -41,3 +36,4 @@ namespace MornLib
         }
     }
 }
+#endif

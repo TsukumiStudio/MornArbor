@@ -1,21 +1,12 @@
-#if USE_MORNSTATE
-using MornLib;
-using System;
-#else
+#if USE_ARBOR
 using Arbor;
-#endif
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class SetActiveByRandomIndexState : MornStateBehaviour
-#else
     [Serializable]
     internal class SetActiveByRandomIndexState : StateBehaviour
-#endif
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private Vector2Int _range;
@@ -30,3 +21,4 @@ namespace MornLib
         }
     }
 }
+#endif

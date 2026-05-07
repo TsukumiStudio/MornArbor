@@ -1,16 +1,12 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using UnityEngine;
 using System;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class DestroyChildrenState : MornStateBehaviour
-#else
     [Serializable]
     internal class DestroyChildrenState : StateBehaviour
-#endif
     {
         [SerializeField] private Transform _parent;
 
@@ -23,3 +19,4 @@ namespace MornLib
         }
     }
 }
+#endif

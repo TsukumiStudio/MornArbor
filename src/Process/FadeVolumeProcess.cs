@@ -1,4 +1,5 @@
-﻿using MornArbor;
+#if USE_ARBOR
+using MornArbor;
 using UnityEngine;
 using System;
 
@@ -28,3 +29,4 @@ namespace MornLib
         }
     }
 }
+#endif

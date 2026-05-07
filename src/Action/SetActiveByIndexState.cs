@@ -1,16 +1,12 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using UnityEngine;
 using System;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class SetActiveByIndexState : MornStateBehaviour
-#else
     [Serializable]
     internal class SetActiveByIndexState : StateBehaviour
-#endif
     {
         [SerializeField] private Transform _parent;
         [SerializeField] private int _activeIndex;
@@ -24,3 +20,4 @@ namespace MornLib
         }
     }
 }
+#endif

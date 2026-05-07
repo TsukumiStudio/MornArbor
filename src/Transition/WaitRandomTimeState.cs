@@ -1,4 +1,5 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using StateLink = MornLib.Connection;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -6,13 +7,8 @@ using System;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class WaitRandomTimeState : MornStateBehaviour
-#else
     [Serializable]
     internal class WaitRandomTimeState : StateBehaviour
-#endif
     {
         [SerializeField] private float _min;
         [SerializeField] private float _max;
@@ -30,3 +26,4 @@ namespace MornLib
         }
     }
 }
+#endif

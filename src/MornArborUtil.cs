@@ -1,3 +1,4 @@
+#if USE_ARBOR
 using UnityEngine;
 
 namespace MornArbor
@@ -36,3 +37,4 @@ namespace MornArbor
         }
     }
 }
+#endif

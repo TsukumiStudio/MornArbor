@@ -1,3 +1,4 @@
+#if USE_ARBOR
 using System;
 ﻿using UnityEngine;
 
@@ -41,3 +42,4 @@ namespace MornLib
         }
     }
 }
+#endif

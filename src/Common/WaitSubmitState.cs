@@ -1,4 +1,5 @@
-﻿using MornLib;
+#if USE_ARBOR
+using MornLib;
 using StateLink = MornLib.Connection;
 using Cysharp.Threading.Tasks;
 using System;
@@ -9,13 +10,8 @@ using UnityEngine.UI;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-	[Serializable]
-	internal sealed class WaitSubmitState : MornStateBehaviour
-#else
 	[Serializable]
 	internal sealed class WaitSubmitState : StateBehaviour
-#endif
 	{
 		[SerializeField] private Selectable _target;
 		[SerializeField] private StateLink _nextState;
@@ -31,3 +27,4 @@ namespace MornLib
 		}
 	}
 }
+#endif

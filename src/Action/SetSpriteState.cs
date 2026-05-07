@@ -1,22 +1,12 @@
-#if USE_MORNSTATE
-using MornLib;
-using StateLink = MornLib.Connection;
-using System;
-#else
+#if USE_ARBOR
 using Arbor;
-#endif
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace MornLib
 {
-#if USE_MORNSTATE
-    [Serializable]
-    internal class SetSpriteState : MornStateBehaviour
-#else
     [Serializable]
     internal class SetSpriteState : StateBehaviour
-#endif
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private Sprite[] _sprites;
@@ -33,3 +23,4 @@ namespace MornLib
         }
     }
 }
+#endif
