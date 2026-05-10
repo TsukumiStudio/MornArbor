@@ -1,6 +1,6 @@
 #if USE_ARBOR
 using MornLib;
-using StateLink = MornLib.Connection;
+using StateLink = MornLib.StateLink;
 using Cysharp.Threading.Tasks;
 using System;
 using UniRx;
