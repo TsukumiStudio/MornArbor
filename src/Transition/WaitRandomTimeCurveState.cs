@@ -1,6 +1,5 @@
 #if USE_ARBOR
 using MornLib;
-using StateLink = MornLib.StateLink;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
