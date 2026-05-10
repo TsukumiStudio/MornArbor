@@ -1,7 +1,7 @@
 #if USE_ARBOR
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
 namespace MornLib
 {

@@ -1,7 +1,7 @@
 #if USE_ARBOR
 #if USE_MORN_SCENE
-using System.Collections;
 using System;
+using System.Collections;
 using MornArbor;
 using UnityEngine;
 using UnityEngine.SceneManagement;

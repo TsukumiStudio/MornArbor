@@ -2,7 +2,7 @@
     "name": "MornArbor",
     "rootNamespace": "MornLib",
     "references": [
-        "MornState",
+        "GUID:e623bc35d2e040d4d81ac786178e2a6a",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",

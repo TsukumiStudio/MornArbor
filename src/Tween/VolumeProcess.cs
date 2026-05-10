@@ -1,6 +1,6 @@
 #if USE_ARBOR
 using System;
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace MornLib
 {

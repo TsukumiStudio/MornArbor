@@ -1,4 +1,5 @@
 #if USE_ARBOR
+using System;
 using Arbor;
 using TMPro;
 using UnityEngine;
